@@ -23,8 +23,13 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/users`);
   }
 
-  addUser(username: string, user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users/${username}`, user);
+  //had to add this to check for users exisitng by email
+  getUserByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users?email=${email}`);
+  }
+
+   addUser(userData: { username: string; email: string; fullName: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/${userData.username}`, userData);
   }
 
   updateUser(username: string, user: any): Observable<any> {
