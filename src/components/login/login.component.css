@@ -1,0 +1,22 @@
+.login-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  button {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #357ae8;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
