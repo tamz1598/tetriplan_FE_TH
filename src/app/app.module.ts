@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
+import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from '../components/login/login.component';
 
@@ -22,7 +23,8 @@ import { LoginComponent } from '../components/login/login.component';
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   providers: [
   ],
