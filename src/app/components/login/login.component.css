@@ -1,0 +1,132 @@
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+    font-family: Virgil;
+}
+
+.small-logo {
+  width: 50px;
+  height: 50px;
+}
+
+.google-icon {
+  width: 50px;
+  height: auto;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / 2;
+  padding: 20px;
+}
+
+:host form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+  width: 30vw;
+}
+
+.google-signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 1em;
+  color: #000000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 5%;
+  padding-right: 5%;
+  transition: background-color 0.3s;
+  font-family: Virgil;
+  width:25vw;
+}
+
+.google-signin:hover {
+  border-color: #3ab399;
+  border-style: solid;
+  border-width: thick;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #3ab399;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+  margin: 3%;
+  width: 25vw;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.login-button {
+  padding: 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #3ab399;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 5%;
+  padding-right: 5%;
+  transition: background-color 0.3s;
+  width:20vw;
+  font-family: Virgil;
+}
+
+.login-button:hover {
+  background-color: #27937b;
+}
+
+.small-text {
+  text-align: center;
+  font-size: 0.8em;
+  width: 80%;
+  margin: auto;
+}
+
+.login-wallpaper {
+  grid-column: 2 / 3;
+  width: 100%;
+  height: 100vh;
+  background-size: cover; 
+}
+
+h1 {
+  font-size: 3em;
+  grid-column: 1 / 2;
+  text-align: center;
+  color: #3ab399;
+}
+

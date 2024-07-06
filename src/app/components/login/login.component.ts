@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -9,7 +9,7 @@ import * as CryptoJS from 'crypto-js';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
     errorMessage: string | null = null;
     successMessage: string | null = null;
     failedMessage: string | null = null;
@@ -114,5 +114,7 @@ export class LoginComponent {
             }
           );
       }
-    
+    ngOnInit() {
+      console.log('LoginComponent loaded');
+    }  
 }
