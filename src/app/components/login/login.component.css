@@ -130,3 +130,7 @@ h1 {
   color: #3ab399;
 }
 
+.loading {
+  cursor: wait;
+}
+

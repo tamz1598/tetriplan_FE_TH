@@ -3,4 +3,8 @@
     font-family: Virgil;
     src: url(../src/app/fonts/Virgil.ttf);
   }
+
+  body.loading {
+    cursor: wait;
+  }
   

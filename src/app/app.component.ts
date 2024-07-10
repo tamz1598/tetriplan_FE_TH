@@ -1,9 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-login></app-login>
-  `
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log('NavigationEnd:', event);
+      }
+    });
+  }
+
+  ngOnInit() {
+    console.log('AppComponent loaded');
+  }
+}

@@ -28,8 +28,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AngularFireAuthModule,
     FormsModule
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
