@@ -1,5 +1,100 @@
 @import '../node_modules/@angular/material/prebuilt-themes/azure-blue.css';
 
+
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+/* Define custom typography */
+body, .mat-typography {
+  font-family: 'Virgil', sans-serif;
+}
+
+.mat-display-4 {
+  font-size: 112px;
+  line-height: 112px;
+  font-weight: 300;
+}
+
+.mat-display-3 {
+  font-size: 56px;
+  line-height: 56px;
+  font-weight: 400;
+}
+
+.mat-display-2 {
+  font-size: 45px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+.mat-display-1 {
+  font-size: 34px;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.mat-headline {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.mat-title {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.mat-subheading-2 {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.mat-subheading-1 {
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.mat-body-2 {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.mat-body-1 {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.mat-caption {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.mat-button {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+}
+
+.mat-input {
+  font-size: inherit;
+  line-height: 1.125;
+  font-weight: 400;
+}
+
+/* Apply custom typography to Material components */
+.mat-checkbox .mat-checkbox-label {
+  font-family: 'Virgil', sans-serif;
+}
+
+/* Note: Angular Material components use multiple selectors,
+   you might need to be more specific based on your use case. */
+
+
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: Virgil !important;
