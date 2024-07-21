@@ -1,6 +1,51 @@
 /* Simplify CSS to rule out styling issues */
-h2, p {
-    color: black;
-    font-size: 20px;
-  }
-  
+
+.dashboard-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  margin: 20px;
+}
+
+.welcome-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.calendar-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mwl-calendar-month-view {
+  width: 100%;
+  grid-column: 2;
+  grid-row: 1/ 2;
+}
+
+.small-logo {
+  width: 8%;
+  height: auto;
+}
+
+h2 {
+  font-family: Virgil;
+  color: #3ab399;
+  font-size: 3em;
+  margin: 0 !important;
+  padding-bottom: 5px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  grid-column:1;
+  grid-row: 2;
+}

@@ -1,2 +1,15 @@
-<h2>Welcome to the Dashboard</h2>
-<p>{{ loggedInUserName }}</p>
+<div class="dashboard-container">
+<div *ngIf="userLoaded">
+  <div class="logo">
+    <h2>TetriPlan</h2>
+  </div>
+  <div class="welcome-message">
+    {{ welcomeMessage }}
+  </div>
+  <app-task-list [loggedInUserName]="loggedInUserName" class="task-list"></app-task-list>
+  <!-- <app-day-view-calendar></app-day-view-calendar> -->
+</div>
+</div>
+  
+  
+  
