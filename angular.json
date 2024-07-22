@@ -37,7 +37,8 @@
             "styles": [
               "src/styles.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
-              "node_modules/@angular/material/prebuilt-themes/azure-blue.css"
+              "node_modules/@angular/material/prebuilt-themes/azure-blue.css",
+              "src/assets/fullcalendar/fullcalendar.css"
             ],
             "scripts": []
           },

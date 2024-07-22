@@ -6,8 +6,11 @@
   <div class="welcome-message">
     {{ welcomeMessage }}
   </div>
-  <app-task-list [loggedInUserName]="loggedInUserName" class="task-list"></app-task-list>
-  <!-- <app-day-view-calendar></app-day-view-calendar> -->
+    <div>
+      <app-mini-calendar [loggedInUserName]="loggedInUserName" class="mini-calendar"></app-mini-calendar>
+      <app-task-list [loggedInUserName]="loggedInUserName" class="task-list"></app-task-list>
+      <app-day-view-calendar [loggedInUserName]="loggedInUserName" class="day-view-calendar"></app-day-view-calendar>
+  </div>
 </div>
 </div>
   

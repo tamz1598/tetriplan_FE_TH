@@ -2,22 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from './api.service'
-
-export interface Task {
-  _id: string;
-  userID: string;
-  taskName: string;
-  description: string;
-  category: string;
-  calendar?: string;
-  date?: string;
-  startTime: string;
-  endTime: string;
-  duration: number;
-  completionStatus: boolean;
-  label: string;
-  priority: string;
-}
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,10 +15,17 @@ export class TaskService {
 
   constructor(private apiService: ApiService) {}
 
-  getTasks(uid: string): Observable<Task[]> {
+   // New method to get username from userID
+   getUsernameFromUserID(userID: string): Observable<string> {
+    return this.apiService.getUserById(userID).pipe(
+      map(user => user.username)
+    );
+  }
+
+  getUserTasks(username: string): Observable<Task[]> {
     console.log('loading tasks');
 
-    return this.apiService.getUserTasks(uid).pipe(
+    return this.apiService.getUserTasks(username).pipe(
       map((tasks: any[]) => {
         const mappedTasks = tasks.map((task) => ({
           ...task,
@@ -51,8 +43,8 @@ export class TaskService {
     );
   }
 
-  getCalendarEvents(uid: string): Observable<any[]> {
-    return this.getTasks(uid).pipe(
+  getCalendarEvents(username: string): Observable<any[]> {
+    return this.getUserTasks(username).pipe(
       map((tasks) => {
         const events = tasks.map((task) => ({
           id: task._id,
@@ -74,10 +66,10 @@ export class TaskService {
   }
 
   updateTask(task: Task): Observable<any> {
-    const { _id, userID, date, ...rest } = task;
+    const { _id, userID, calendar, ...rest } = task;
     const taskUpdateData = {
       ...rest,
-      calendar: date,
+      calendar: calendar,
     };
 
     console.log('Updating task:', taskUpdateData);

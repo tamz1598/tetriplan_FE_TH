@@ -3,10 +3,11 @@
 .dashboard-container {
   position: relative;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 2fr 1.5fr; 
   grid-template-rows: auto auto;
+  gap: 20px;
   align-items: center;
-  margin: 20px;
+  padding: 20px;
 }
 
 .welcome-message {
@@ -48,4 +49,22 @@ h2 {
   flex-direction: column;
   grid-column:1;
   grid-row: 2;
+}
+
+.day-view-calendar {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 2/3;
+}
+
+
+.mini-calendar {
+  grid-column: 1; /* First column */
+  grid-row: 2;
+}
+
+
+.mwl-calendar-month-view {
+  width: 100%;
 }

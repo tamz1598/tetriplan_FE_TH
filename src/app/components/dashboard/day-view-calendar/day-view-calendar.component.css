@@ -1,0 +1,12 @@
+/* day-view-calendar.component.css */
+.day-view-calendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .full-calendar {
+    width: 100%;
+    height: 100%;
+  }

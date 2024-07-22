@@ -1,0 +1,33 @@
+/* Core Styles */
+@import './core/bg.css';
+@import './core/button-group.css';
+@import './core/button.css';
+@import './core/calendar-root.css';
+@import './core/col-header.css';
+@import './core/event.css';
+@import './core/h-event.css';
+@import './core/icons.css';
+@import './core/mixins.css';
+@import './core/page-root.css';
+@import './core/popover.css';
+@import './core/scroller-harness.css';
+@import './core/scroller.css';
+@import './core/scrollgrid.css';
+@import './core/sticky.css';
+@import './core/toolbar.css';
+@import './core/vars.css';
+@import './core/view-harness.css';
+
+/* daygrid Styles */
+@import './daygrid/daygrid-event.css';
+@import './daygrid/daygrid.css';
+@import './daygrid/vars.css';
+
+/* daygrid Styles */
+@import './timegrid/constants.css';
+@import './timegrid/timegrid-cols.css';
+@import './timegrid/timegrid-event.css';
+@import './timegrid/timegrid-now-indicator.css';
+@import './timegrid/timegrid-slots.css';
+@import './timegrid/timegrid.css';
+@import './timegrid/v-event.css';

@@ -4,6 +4,7 @@ export interface Task {
     taskName: string;
     description: string;
     category: string;
+    calendar: string;
     startTime: string;
     endTime: string;
     duration: number;
@@ -11,7 +12,6 @@ export interface Task {
     label: string;
     priority: string;
     dateAdded: string;
-    calendar: string;
     __v: number;
 }
   

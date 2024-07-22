@@ -87,7 +87,7 @@ export class TaskDetailsPopupComponent {
     const { calendar, ...rest } = this.editableTask;
     const taskUpdateData = {
       ...rest,
-      date: calendar, // Ensure your task model has a 'date' property
+      calendar: calendar, // Ensure your task model has a 'date' property
     };
 
     // Call updateTask method from TaskService to update the task

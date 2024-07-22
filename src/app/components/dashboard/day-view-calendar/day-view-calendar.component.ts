@@ -1,22 +1,25 @@
-import { Component, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular'; 
 import { CalendarOptions } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { MatDialog } from '@angular/material/dialog';
 import { TaskService } from '../../../services/task.service'
 import { Task } from '../../../models/task.model'; 
-import { MatDialog } from '@angular/material/dialog';
-import { TaskDetailsPopupComponent } from '../../../task-details-pop-up/task-details-pop-up.component'; 
+import { TaskDetailsPopupComponent } from '../task-details-pop-up/task-details-pop-up.component'; 
+import { ApiService } from '../../../services/api.service';
+
 
 @Component({
-  selector: 'app-calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
+  selector: 'app-day-view-calendar',
+  templateUrl: './day-view-calendar.component.html',
+  styleUrls: ['./day-view-calendar.component.css'],
 })
-export class CalendarComponent implements AfterViewInit, OnChanges {
+export class DayViewCalendarComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   @Input() isExpanded: boolean = false; // Example input for expansion control
+  @Input() loggedInUserName: string | null = null;
 
   isLoading = true;
   calendarOptions: CalendarOptions = {
@@ -46,8 +49,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges {
 
   constructor(
     private taskService: TaskService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog, private apiService: ApiService) {}
 
   ngAfterViewInit(): void {
     // Optionally perform actions after view initialization
@@ -69,8 +71,15 @@ export class CalendarComponent implements AfterViewInit, OnChanges {
 
   loadCalendarEvents(): void {
     this.isLoading = true;
+    const username = this.loggedInUserName;
+    if (!username) {
+      console.log("log in please to view tasks", username)
+      this.isLoading = false;
+      return;
+    }
+
     // Example: Fetch events from the task service
-    this.taskService.getTasks().subscribe(
+     this.taskService.getUserTasks(username).subscribe(
       (tasks: Task[]) => {
         const events = tasks.map((task) => ({
           id: task._id,
@@ -79,7 +88,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges {
           end: task.endTime, // Adjust as per your task model
           description: task.description,
           category: task.category,
-          date: task.dateAdded, // Adjust as per your task model
+          date: task.calendar, // Adjust as per your task model
           duration: task.duration,
           completionStatus: task.completionStatus,
           label: task.label,
@@ -128,5 +137,46 @@ export class CalendarComponent implements AfterViewInit, OnChanges {
     // Example: Handle drop of external items into the calendar
     console.log('Dropped:', info);
     // Implement logic to process dropped item
+  }
+
+  handleEventDragStop(info: any): void {
+    const taskId = info.event.id;
+    const newStart = info.event.start; // New start time
+    const newEnd = info.event.end; // New end time
+  
+    console.log('Event drag stopped:', info);
+    
+    // Find the task by ID and update its start and end times
+    this.taskService.getUserTasks(this.loggedInUserName!).subscribe(
+      (tasks: Task[]) => {
+          // Find the task by ID
+          const taskToUpdate = tasks.find(task => task._id === taskId);
+          if (taskToUpdate) {
+              // Create the updated task object
+              const updatedTask: Task = {
+                  ...taskToUpdate, // Include all original task properties
+                  startTime: newStart.toISOString(), // Update only the changed properties
+                  endTime: newEnd ? newEnd.toISOString() : taskToUpdate.endTime,
+                  calendar: taskToUpdate.calendar,
+              };
+  
+           // Call the update service method with the complete task object
+           this.taskService.updateTask(updatedTask).subscribe(
+            (response) => {
+                console.log('Task updated successfully:', response);
+                // Optionally, refresh or update the calendar view
+                this.loadCalendarEvents();
+            },
+            (error) => {
+                console.error('Error updating task:', error);
+                // Optionally, notify the user about the error
+            }
+           );
+          }
+      },
+    (error) => {
+        console.error('Error fetching tasks:', error);
+    }
+   );
   }
 }

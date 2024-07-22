@@ -1,12 +1,6 @@
 <div class="day-view-calendar">
-    <angular-calendar
-      [view]="view"
-      [viewDate]="viewDate"
-      [events]="events"
-      [activeDayIsOpen]="true"
-      (dayClicked)="dayClicked($event)">
-    </angular-calendar>
-  </div>
-  
+  <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+</div>
+
   
   
