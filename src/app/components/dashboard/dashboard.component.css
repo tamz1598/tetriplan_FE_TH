@@ -4,7 +4,7 @@
 .dashboard-container {
   display: grid !important;
   grid-template-columns: 3fr 1.5fr; 
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 0.5fr 4fr;
   gap: 20px;
   align-items: start;
   padding: 20px;
@@ -17,16 +17,57 @@
 }
 
 .user-content {
-  display: contents;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  gap: 20px;
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 2;
+}
+
+.user-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 2fr;
+  gap: 20px;
   grid-column: 1;
+  grid-row: 1 /span 2;
+}
+
+.title {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: 1;
+  grid-row: 1 /span 1; /* First row */
 }
 
 .logo {
   grid-column: 1;
   grid-row: 1; /* First row */
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  grid-column: 2 /span 2;
+  grid-row: 1;
+}
+
+.navbar a {
+  padding-left: 10px;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #141414;
+  padding: 15px;
+}
+
+.navbar a:active{
+  font-weight: bold;
+  text-decoration: underline rgb(223, 148, 18);
+  color: #4c4d4d;
+}
+
 
 .welcome-message {
   font-size: 24px;
@@ -43,15 +84,9 @@
   font-size: 24px;
   margin-bottom: 20px;
   grid-column: 2;
-}
-
-.user-details {
-  display: contents;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-column: 1;
   grid-row: 1;
 }
+
 
 .mini-calendar,
 .task-list,
@@ -67,16 +102,18 @@
 }
 
 .task-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-column: 2; /* Second column */
-  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2 /span 3; /* Second column */
+  grid-row: 2; /* Third row */
+  max-height: 73vh;
+  max-width: fit-content;
 }
 
 .day-view-calendar {
   grid-column: 2; /* Third column */
   grid-row: 1 / span 3; /* Third row */
-  /* max-height: 100vh; */
+  max-height: 95vh;
 }
 
 /* Remove duplicate or conflicting styles */

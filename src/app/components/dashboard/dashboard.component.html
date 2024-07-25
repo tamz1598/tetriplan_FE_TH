@@ -1,8 +1,16 @@
 <div class="dashboard-container">
   <div class= 'user-main' *ngIf="userLoaded">
+    <div class="title">
     <div class="logo">
       <h2>TetriPlan</h2>
     </div>
+    <div class="navbar">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/login">Calendar</a>
+      <a routerLink="/login">Reports</a>
+      <a routerLink="/login">Login</a>
+    </div>
+  </div>
     <div class="user-content">
       <div class="user-details">
         <div class="welcome-message">
