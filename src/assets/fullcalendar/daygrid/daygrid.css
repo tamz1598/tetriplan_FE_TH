@@ -1,179 +1,154 @@
-
-$daygrid-non-business-z: 1;
-$daygrid-bg-event-z: 2;
-$daygrid-highlight-z: 3;
-$daygrid-topbottom-z: 4;
-$daygrid-weeknum-z: 5;
-$daygrid-event-z: 6;
-$daygrid-event-mirror-z: 7;
-
-
-// help things clear margins of inner content
 .fc-daygrid-day-frame,
 .fc-daygrid-day-events,
-.fc-daygrid-event-harness { // for event top/bottom margins
-  &:before { @include clearfix; }
-  &:after { @include clearfix; }
+.fc-daygrid-event-harness::before, 
+.fc-daygrid-day-events::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
-.fc {
+.fc .fc-daygrid-body {
+  position: relative;
+  z-index: 1; 
+}
 
-  & .fc-daygrid-body { // a <div> that wraps the table
-    position: relative;
-    z-index: 1; // container inner z-index's because <tr>s can't do it
-  }
+/* .fc .fc-daygrid-day {
+  Assuming this class has dynamic background-color
+} */
 
-  & .fc-daygrid-day {
-    &.fc-day-today {
-      background-color: var(--fc-today-bg-color);
-    }
-  }
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: var(--fc-today-bg-color);
+}
 
-  & .fc-daygrid-day-frame {
-    position: relative;
-    min-height: 100%; // seems to work better than `height` because sets height after rows/cells naturally do it
-  }
+.fc .fc-daygrid-day-frame {
+  position: relative;
+  min-height: 100%; /* Height adjusted after rows/cells naturally */
+}
 
-  // cell top
+.fc .fc-daygrid-day-top {
+  display: flex;
+  flex-direction: column;
+  max-width: 50px;
+}
 
-  & .fc-daygrid-day-top {
-    display: flex;
-    flex-direction: row-reverse;
-  }
+.fc .fc-day-other .fc-daygrid-day-top {
+  opacity: 0.3;
+}
 
-  & .fc-day-other .fc-daygrid-day-top {
-    opacity: 0.3;
-  }
+/* Day number (within cell top) */
+.fc .fc-daygrid-day-number {
+  position: relative;
+  z-index: 4;
+  padding: 4px;
+}
 
-  // day number (within cell top)
+.fc .fc-daygrid-month-start { 
+  font-weight: bold;
+  font-size: 1.1em;
+}
 
-  & .fc-daygrid-day-number {
-    position: relative;
-    z-index: $daygrid-topbottom-z;
-    padding: 4px;
-  }
+/* Event container */
+.fc .fc-daygrid-day-events {
+  margin-top: 1px; /* Margin needed for cell height computation */
+}
 
-  & .fc-daygrid-month-start { // on .fc-daygrid-day-number
-    font-weight: bold;
-    font-size: 1.1em;
-  }
+.fc .fc-daygrid-body-balanced .fc-daygrid-day-events {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 
-  // event container
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  position: relative; 
+  min-height: 2em;
+}
 
-  & .fc-daygrid-day-events {
-    margin-top: 1px; // needs to be margin, not padding, so that available cell height can be computed
-  }
+.fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+  margin-bottom: 1em;
+}
 
-  // positioning for balanced vs natural
+/* Event harness */
+.fc .fc-daygrid-event-harness {
+  position: relative;
+}
 
-  & .fc-daygrid-body-balanced {
-    & .fc-daygrid-day-events {
-      position: absolute;
-      left: 0;
-      right: 0;
-    }
-  }
+.fc .fc-daygrid-event-harness-abs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
-  & .fc-daygrid-body-unbalanced {
-    & .fc-daygrid-day-events {
-      position: relative; // for containing abs positioned event harnesses
-      min-height: 2em; // in addition to being a min-height during natural height, equalizes the heights a little bit
-    }
-  }
+.fc .fc-daygrid-bg-harness {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
 
-  & .fc-daygrid-body-natural { // can coexist with -unbalanced
-    & .fc-daygrid-day-events {
-      margin-bottom: 1em;
-    }
-  }
+/* Background content */
+.fc .fc-daygrid-day-bg .fc-non-business {
+  z-index: 1;
+}
 
-  // event harness
+.fc .fc-daygrid-day-bg .fc-bg-event {
+  z-index: 2;
+}
 
-  & .fc-daygrid-event-harness {
-    position: relative;
-  }
+.fc .fc-daygrid-day-bg .fc-highlight {
+  z-index: 3;
+}
 
-  & .fc-daygrid-event-harness-abs {
-    position: absolute;
-    top: 0; // fallback coords for when cannot yet be computed
-    left: 0; //
-    right: 0; //
-  }
+/* Events */
+.fc .fc-daygrid-event {
+  z-index: 6;
+  margin-top: 1px;
+}
 
-  & .fc-daygrid-bg-harness {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-  }
+.fc .fc-daygrid-event.fc-event-mirror {
+  z-index: 7;
+}
 
-  // bg content
+/* Cell bottom (within day-events) */
+.fc .fc-daygrid-day-bottom {
+  font-size: .85em;
+  margin: 0 2px;
+}
 
-  & .fc-daygrid-day-bg {
-    & .fc-non-business { z-index: $daygrid-non-business-z }
-    & .fc-bg-event { z-index: $daygrid-bg-event-z }
-    & .fc-highlight { z-index: $daygrid-highlight-z }
-  }
+/* More link */
+.fc .fc-daygrid-more-link {
+  position: relative;
+  z-index: 4;
+  margin-top: 1px;
+  max-width: 100%;
+  border-radius: 3px;
+  padding: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1;
+  cursor: pointer;
+}
 
-  // events
+.fc .fc-daygrid-more-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
-  & .fc-daygrid-event {
-    z-index: $daygrid-event-z;
-    margin-top: 1px;
-  }
+/* Week number */
+.fc .fc-daygrid-week-number {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  padding: 2px;
+  min-width: 1.5em;
+  text-align: center;
+  background-color: var(--fc-neutral-bg-color);
+  color: var(--fc-neutral-text-color);
+}
 
-  & .fc-daygrid-event.fc-event-mirror {
-    z-index: $daygrid-event-mirror-z;
-  }
-
-  // cell bottom (within day-events)
-
-  & .fc-daygrid-day-bottom {
-    font-size: .85em;
-    margin: 0 2px;
-
-    // can't use flexbox well inside tables. for floating
-    &:before { @include clearfix; }
-    &:after { @include clearfix; }
-  }
-
-  & .fc-daygrid-more-link {
-    position: relative;
-    z-index: $daygrid-topbottom-z;
-    margin-top: 1px;
-    max-width: 100%;
-    border-radius: 3px;
-    padding: 2px;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 1; // undo themes that have thick line-height
-    cursor: pointer;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  // week number (within frame)
-
-  & .fc-daygrid-week-number {
-    position: absolute;
-    z-index: $daygrid-weeknum-z;
-    top: 0;
-    padding: 2px;
-    min-width: 1.5em;
-    text-align: center;
-    background-color: var(--fc-neutral-bg-color);
-    color: var(--fc-neutral-text-color);
-  }
-
-  // popover
-
-  & .fc-more-popover .fc-popover-body {
-    min-width: 220px;
-    padding: 10px;
-  }
-
+/* Popover */
+.fc .fc-more-popover .fc-popover-body {
+  min-width: 220px;
+  padding: 10px;
 }
 
 .fc-direction-ltr .fc-daygrid-event.fc-event-start,
@@ -186,36 +161,24 @@ $daygrid-event-mirror-z: 7;
   margin-right: 2px;
 }
 
-.fc-direction-ltr {
-
-  & .fc-daygrid-more-link {
-    float: left;
-  }
-
-  & .fc-daygrid-week-number {
-    left: 0;
-    border-radius: 0 0 3px 0;
-  }
-
+.fc-direction-ltr .fc-daygrid-more-link {
+  float: left;
 }
 
-.fc-direction-rtl {
-
-  & .fc-daygrid-more-link {
-    float: right;
-  }
-
-  & .fc-daygrid-week-number {
-    right: 0;
-    border-radius: 0 0 0 3px;
-  }
-
+.fc-direction-ltr .fc-daygrid-week-number {
+  left: 0;
+  border-radius: 0 0 3px 0;
 }
 
-.fc-liquid-hack {
+.fc-direction-rtl .fc-daygrid-more-link {
+  float: right;
+}
 
-  & .fc-daygrid-day-frame {
-    position: static; // will cause inner absolute stuff to expand to <td>
-  }
+.fc-direction-rtl .fc-daygrid-week-number {
+  right: 0;
+  border-radius: 0 0 0 3px;
+}
 
+.fc-liquid-hack .fc-daygrid-day-frame {
+  position: static; /* Expands inner absolute stuff to <td> */
 }

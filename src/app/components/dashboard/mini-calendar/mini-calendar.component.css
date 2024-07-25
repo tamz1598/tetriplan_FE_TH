@@ -1,8 +1,16 @@
 /* mini-calendar.component.css */
 
-full-calendar {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.full-calendar {
+  width: 100%;
+  height: 100%;
+}
+
+.fc-view-harness, .fc-view-harness-active {
+  min-height: 300px !important;
+}

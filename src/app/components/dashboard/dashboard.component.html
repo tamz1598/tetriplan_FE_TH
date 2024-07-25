@@ -1,17 +1,28 @@
 <div class="dashboard-container">
-<div *ngIf="userLoaded">
-  <div class="logo">
-    <h2>TetriPlan</h2>
+  <div class= 'user-main' *ngIf="userLoaded">
+    <div class="logo">
+      <h2>TetriPlan</h2>
+    </div>
+    <div class="user-content">
+      <div class="user-details">
+        <div class="welcome-message">
+          {{ welcomeMessage }}
+        </div>
+        <div class="mini-calendar">
+          <app-mini-calendar [loggedInUserName]="loggedInUserName"></app-mini-calendar>
+        </div>
+      </div>
+      <div class="task-message">
+        {{ taskMessage }}
+      </div>
+      <div class="task-list">
+        <app-task-list [loggedInUserName]="loggedInUserName"></app-task-list>
+      </div>
+    </div>
+    <div class="day-view-calendar">
+      <app-day-view-calendar [loggedInUserName]="loggedInUserName"></app-day-view-calendar>
+    </div>
   </div>
-  <div class="welcome-message">
-    {{ welcomeMessage }}
-  </div>
-    <div>
-      <app-mini-calendar [loggedInUserName]="loggedInUserName" class="mini-calendar"></app-mini-calendar>
-      <app-task-list [loggedInUserName]="loggedInUserName" class="task-list"></app-task-list>
-      <app-day-view-calendar [loggedInUserName]="loggedInUserName" class="day-view-calendar"></app-day-view-calendar>
-  </div>
-</div>
 </div>
   
   

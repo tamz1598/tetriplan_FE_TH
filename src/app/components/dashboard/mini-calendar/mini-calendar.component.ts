@@ -12,7 +12,7 @@ import { TaskService } from '../../../services/task.service'
   imports: [FullCalendarModule]
 })
 export class MiniCalendarComponent implements OnInit {
-  @Input() loggedInUserName!: string;
+  @Input() loggedInUserName: string | null = null;
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],

@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit{
   loggedInUserName: string | null = null;
   userLoaded: boolean = false;
   welcomeMessage: string | null = null;
+  taskMessage: string | null = null;
 
   constructor(private apiService: ApiService) {}
 
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit{
             if (user) {
               this.loggedInUserName = `${user.username}`;
               this.welcomeMessage = `Hello ${this.loggedInUserName}`
+              this.taskMessage = `task for ${this.loggedInUserName}`
               console.log('User found:', user);
               console.log('User full name:', user.fullName);
               this.userLoaded = true; 

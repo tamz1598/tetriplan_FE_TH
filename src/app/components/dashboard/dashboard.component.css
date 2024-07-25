@@ -1,37 +1,87 @@
-/* Simplify CSS to rule out styling issues */
+/* dashboard.component.css */
 
+/* Ensure the parent container uses grid layout, otherwise displa: block will take over */
 .dashboard-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1.5fr; 
-  grid-template-rows: auto auto;
+  display: grid !important;
+  grid-template-columns: 3fr 1.5fr; 
+  grid-template-rows: 1fr 4fr;
   gap: 20px;
-  align-items: center;
+  align-items: start;
   padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.user-main {
+  display: contents;
+}
+
+.user-content {
+  display: contents;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column: 1;
+}
+
+.logo {
+  grid-column: 1;
+  grid-row: 1; /* First row */
 }
 
 .welcome-message {
   font-size: 24px;
   margin-bottom: 20px;
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
+  max-height: 50px;
 }
 
-.calendar-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.mwl-calendar-month-view {
-  width: 100%;
+.task-message {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
   grid-column: 2;
-  grid-row: 1/ 2;
 }
 
-.small-logo {
-  width: 8%;
-  height: auto;
+.user-details {
+  display: contents;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.mini-calendar,
+.task-list,
+.day-view-calendar {
+  height: 100%;
+  overflow: auto; /* Add scrolling if content overflows */
+}
+
+.mini-calendar {
+  display: flex;
+  grid-column: 1; /* First column */
+  grid-row: 2; /* Third row */
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column: 2; /* Second column */
+  max-height: 50vh;
+}
+
+.day-view-calendar {
+  grid-column: 2; /* Third column */
+  grid-row: 1 / span 3; /* Third row */
+  /* max-height: 100vh; */
+}
+
+/* Remove duplicate or conflicting styles */
+.calendar-container, .mwl-calendar-month-view, .small-logo, h2 {
+  width: 100%;
 }
 
 h2 {
@@ -40,31 +90,4 @@ h2 {
   font-size: 3em;
   margin: 0 !important;
   padding-bottom: 5px;
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.task-list {
-  display: flex;
-  flex-direction: column;
-  grid-column:1;
-  grid-row: 2;
-}
-
-.day-view-calendar {
-  display: flex;
-  flex-direction: column;
-  grid-column: 2;
-  grid-row: 2/3;
-}
-
-
-.mini-calendar {
-  grid-column: 1; /* First column */
-  grid-row: 2;
-}
-
-
-.mwl-calendar-month-view {
-  width: 100%;
 }
