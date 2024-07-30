@@ -84,11 +84,11 @@ export class DayViewCalendarComponent implements AfterViewInit, OnChanges {
         const events = tasks.map((task) => ({
           id: task._id,
           title: task.taskName,
-          start: task.startTime, // Adjust as per your task model
-          end: task.endTime, // Adjust as per your task model
+          start: task.startTime, 
+          end: task.endTime, 
           description: task.description,
           category: task.category,
-          date: task.calendar, // Adjust as per your task model
+          date: task.calendar, 
           duration: task.duration,
           completionStatus: task.completionStatus,
           label: task.label,
@@ -110,11 +110,10 @@ export class DayViewCalendarComponent implements AfterViewInit, OnChanges {
     if (taskId) {
       const dialogRef = this.dialog.open(TaskDetailsPopupComponent, {
         width: '600px',
-        data: { taskId } // Adjust as per your task details
+        data: { taskId } 
       });
       dialogRef.afterClosed().subscribe((result) => {
         console.log('The dialog was closed');
-        // Implement logic after dialog closes if needed
       });
     }
   }

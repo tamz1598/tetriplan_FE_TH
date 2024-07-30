@@ -14,3 +14,13 @@
 .fc-view-harness, .fc-view-harness-active {
   min-height: 300px !important;
 }
+
+
+.event-circle{
+  width: 25px !important;
+  height: 25px !important;
+  background-color: #3ab399;
+  border-radius: 100% !important;
+  margin: 0 auto !important;
+  cursor: pointer;
+}

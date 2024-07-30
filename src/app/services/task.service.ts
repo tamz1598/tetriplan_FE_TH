@@ -26,8 +26,9 @@ export class TaskService {
     console.log('loading tasks');
 
     return this.apiService.getUserTasks(username).pipe(
-      map((tasks: any[]) => {
-        const mappedTasks = tasks.map((task) => ({
+      map((response: {tasks: Task[]}) => {
+        console.log('Raw tasks from API:', response);
+        const mappedTasks = response.tasks.map((task: Task) => ({
           ...task,
           date: task.calendar,
         }));

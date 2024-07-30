@@ -67,7 +67,6 @@ export class TaskDetailsPopupComponent {
   }
 
   ngOnInit(): void {
-    // Subscribe to categories$ observable to populate categories dropdown
     this.taskService.categories$.subscribe((categories) => {
       this.categories = categories;
       console.log('Task categories:', this.categories);
@@ -87,7 +86,7 @@ export class TaskDetailsPopupComponent {
     const { calendar, ...rest } = this.editableTask;
     const taskUpdateData = {
       ...rest,
-      calendar: calendar, // Ensure your task model has a 'date' property
+      calendar: calendar, 
     };
 
     // Call updateTask method from TaskService to update the task

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Task Details</h1>
+<div mat-dialog-content>
+  <p><strong>Task Name:</strong> {{data.taskName}}</p>
+  <p><strong>Description:</strong> {{data.description}}</p>
+  <p><strong>Category:</strong> {{data.category}}</p>
+  <p><strong>Priority:</strong> {{data.priority}}</p>
+  <p><strong>Start Time:</strong> {{data.startTime}}</p>
+  <p><strong>End Time:</strong> {{data.endTime}}</p>
+  <p><strong>Completion Status:</strong> {{data.completionStatus ? 'Completed' : 'Not Completed'}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>
+

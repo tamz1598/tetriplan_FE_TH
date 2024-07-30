@@ -3,21 +3,21 @@
 A HORIZONTAL event
 */
 
-.fc-h-event { // allowed to be top-level
+.fc-h-event {
   display: block;
-  border: 1px solid var(--fc-event-border-color);
-  background-color: var(--fc-event-bg-color);
+  border-radius: 100% !important;
+  border: none;
 
   & .fc-event-main {
     color: var(--fc-event-text-color);
   }
 
   & .fc-event-main-frame {
-    display: flex; // for make fc-event-title-container expand
+    display: flex;
   }
 
   & .fc-event-time {
-    max-width: 100%; // clip overflow on this element
+    max-width: 100%;
     overflow: hidden;
   }
 

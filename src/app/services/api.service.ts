@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-   // Method to send the Google token to your backend
+   // Method to send the Google token to my backend
    loginWithGoogle(idToken: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/google-login`, { idToken });
   }
@@ -60,8 +61,8 @@ export class ApiService {
     return this.http.delete(`${this.baseUrl}/tasks/${taskID}`);
   }
 
-  getUserTasks(username: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/${username}/tasks`);
+  getUserTasks(username: string): Observable<{ tasks: Task[] }>{
+    return this.http.get<{ tasks: Task[] }>(`${this.baseUrl}/users/${username}/tasks`);
   }
 
   getUserTasksByCategory(userID: string, category: string): Observable<any> {

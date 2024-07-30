@@ -32,6 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini-calendar.component';
+import { TaskDetailsComponent } from './components/dashboard/task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini
     DashboardComponent,
     DayViewCalendarComponent,
     TaskListComponent,
+    TaskDetailsComponent,
   ],
   imports: [
     BrowserModule,

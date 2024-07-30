@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDetailsPopupComponent } from '../task-details-pop-up/task-details-pop-up.component';
+import { TaskDetailsComponent } from '../task-details/task-details.component';
 
 
 @Component({
@@ -25,13 +26,27 @@ export class TaskListComponent implements OnInit {
     }
   }
 
+  // Method to view task details
+  viewTaskDetails(task: any): void {
+    const dialogRef = this.dialog.open(TaskDetailsComponent, {
+      width: '600px', 
+      height: 'auto',
+      data: task, 
+      panelClass: 'task-modal', 
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
   editTask(task: any): void {
     this.currentEditingTaskId = task._id; 
     const dialogRef = this.dialog.open(TaskDetailsPopupComponent, {
-      width: '600px', // Adjust width as needed
-      height: 'auto', // Adjust height to fit content
+      width: '600px',
+      height: 'auto',
       data: task,
-      panelClass: 'task-modal', // Add a custom class for styling
+      panelClass: 'task-modal', 
       autoFocus: false ,
     });
 
