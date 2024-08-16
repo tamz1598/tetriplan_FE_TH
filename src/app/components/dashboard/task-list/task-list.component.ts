@@ -21,17 +21,19 @@ export class TaskListComponent implements OnInit {
     console.log("TaskListComponent initialized with loggedInUserName:", this.loggedInUserName);
     if (this.loggedInUserName) {
       console.log("this is the user before tasks", this.loggedInUserName)
-      // Fetch user tasks based on the received username
+      // Fetch user tasks based on the received username from loadTasks
       this.loadTasks();
     }
   }
 
   // Method to view task details
   viewTaskDetails(task: any): void {
+    const taskId = task._id;
+    console.log(taskId)
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       width: '600px', 
       height: 'auto',
-      data: task, 
+      data: { taskId }, 
       panelClass: 'task-modal', 
       autoFocus: false,
     });
@@ -59,7 +61,6 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-
   deleteTask(taskId: string): void {
     console.log('Deleting task with ID:', taskId);
     if (confirm('Are you sure you want to delete this task?')) {
@@ -81,14 +82,22 @@ export class TaskListComponent implements OnInit {
     if (this.loggedInUserName) {
       this.apiService.getUserTasks(this.loggedInUserName).subscribe(
         (response) => {
-          this.tasks = response.tasks;
-        },
+          //tasks in object filter through tasks for no date in calendar
+          this.tasks = response.tasks.filter((task: any) => !task.calendar || task.calendar.trim() === '');        },
         (error) => {
           console.error('Error fetching tasks:', error);
         }
       );
     }
   }
+
+  onDragStart(event: DragEvent, task: any): void {
+    if (event.dataTransfer) {
+      event.dataTransfer.setData('text/plain', task._id);
+      console.log(task._id)
+    }
+  }
+  
 }
 
 

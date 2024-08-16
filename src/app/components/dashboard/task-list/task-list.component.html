@@ -1,7 +1,8 @@
 <div class="list-container" id="task-list">
 <div *ngIf="tasks.length > 0">
   <ul>
-    <li *ngFor="let task of tasks" [ngClass]="{'highlight-task': task._id === currentEditingTaskId}" (click)="viewTaskDetails(task)">
+    <li *ngFor="let task of tasks" [ngClass]="{'highlight-task': task._id === currentEditingTaskId}" (click)="viewTaskDetails(task)" draggable="true"
+    (dragstart)="onDragStart($event, task)">
       <h4>{{ task.taskName }}</h4>
       <p>{{ task.duration }} minutes</p>
       <p>{{ task.category }}</p>

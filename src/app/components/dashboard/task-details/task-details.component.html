@@ -1,12 +1,12 @@
 <h1 mat-dialog-title>Task Details</h1>
-<div mat-dialog-content>
-  <p><strong>Task Name:</strong> {{data.taskName}}</p>
-  <p><strong>Description:</strong> {{data.description}}</p>
-  <p><strong>Category:</strong> {{data.category}}</p>
-  <p><strong>Priority:</strong> {{data.priority}}</p>
-  <p><strong>Start Time:</strong> {{data.startTime}}</p>
-  <p><strong>End Time:</strong> {{data.endTime}}</p>
-  <p><strong>Completion Status:</strong> {{data.completionStatus ? 'Completed' : 'Not Completed'}}</p>
+<div mat-dialog-content *ngIf="task">
+  <p><strong>Task Name:</strong> {{task.taskName}}</p>
+  <p><strong>Description:</strong> {{task.description}}</p>
+  <p><strong>Category:</strong> {{task.category}}</p>
+  <p><strong>Priority:</strong> {{task.priority}}</p>
+  <p><strong>Start Time:</strong> {{task.startTime}}</p>
+  <p><strong>End Time:</strong> {{task.endTime}}</p>
+  <p><strong>Completion Status:</strong> {{task.completionStatus ? 'Completed' : 'Not Completed'}}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onClose()">Close</button>

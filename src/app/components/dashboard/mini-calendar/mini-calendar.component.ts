@@ -85,6 +85,9 @@ export class MiniCalendarComponent implements OnInit {
   // load the task
   // if task found then open taskDetails
   handleEventClick(info: EventClickArg) {
+    const taskId = info.event.id;
+
+    console.log('taskId in mini', taskId);
     console.log('Event clicked:', info.event);
     console.log('Extended Props:', info.event.extendedProps);
 
@@ -93,7 +96,7 @@ export class MiniCalendarComponent implements OnInit {
       this.dialog.open(TaskDetailsComponent, {
         width: '600px', 
         height: 'auto', 
-        data: task, 
+        data: { taskId }, 
         panelClass: 'task-modal', 
         autoFocus: false
       });
