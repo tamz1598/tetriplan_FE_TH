@@ -1,0 +1,48 @@
+<!-- add-task-modal.component.html -->
+<h2>Add New Task</h2>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="taskName">Task Name:</label>
+    <input id="taskName" type="text" [(ngModel)]="task.taskName" name="taskName" required/>
+  </div>
+  <div>
+    <label for="taskName">Description:</label>
+    <input id="taskName" type="text" [(ngModel)]="task.description" name="description" required/>
+  </div>
+  <div>
+    <label for="category">Category:</label>
+    <input id="category" type="text" [(ngModel)]="task.category" name="category" required/>
+  </div>
+  <div>
+    <label for="startTime">Start Time:</label>
+    <input id="startTime" type="time" [(ngModel)]="task.startTime" name="startTime" required/>
+  </div>
+  <div>
+    <label for="endTime">End Time:</label>
+    <input id="endTime" type="time" [(ngModel)]="task.endTime" name="endTime" required/>
+  </div>
+  <div>
+    <label for="taskName">Duration:</label>
+    <input id="taskName" type="text" [(ngModel)]="task.duration" name="duration" required/>
+  </div>
+  <div>
+    <label for="taskName">Label:</label>
+    <input id="taskName" type="text" [(ngModel)]="task.label" name="label" required/>
+  </div>
+  <div>
+    <label for="taskName">Priority:</label>
+    <input id="taskName" type="text" [(ngModel)]="task.priority" name="priority" required/>
+  </div>
+  <div>
+    <label for="taskName">Calendar:</label>
+    <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="task.calendar" name="calendar"  />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>  </div>
+    <div class="button-group">
+      <button type="submit">Submit</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+</form>
+

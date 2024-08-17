@@ -33,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini-calendar.component';
 import { TaskDetailsComponent } from './components/dashboard/task-details/task-details.component';
+import { AddTaskComponent } from './components/dashboard/add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TaskDetailsComponent } from './components/dashboard/task-details/task-d
     DayViewCalendarComponent,
     TaskListComponent,
     TaskDetailsComponent,
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { TaskDetailsComponent } from './components/dashboard/task-details/task-d
     FullCalendarModule,
     MiniCalendarComponent,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,7 @@ export class DashboardComponent implements OnInit{
   welcomeMessage: string | null = null;
   taskMessage: string | null = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
   ngOnInit() {
     const currentUserEmail = localStorage.getItem('currentUserEmail');
@@ -48,5 +50,22 @@ export class DashboardComponent implements OnInit{
         }
       );
     }
+  }
+
+  openAddTaskModal(): void {
+    if (!this.loggedInUserName) {
+      console.error('No username available to pass to the modal');
+      return;
+    }
+
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '600px',
+      data: {username: this.loggedInUserName}
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle the result here if needed
+    });
   }
 }

@@ -1,6 +1,6 @@
 export interface Task {
-    _id: string;
-    userID: string;
+    _id?: string;
+    userID?: string;
     taskName: string;
     description: string;
     category: string;
@@ -11,7 +11,7 @@ export interface Task {
     completionStatus: boolean;
     label: string;
     priority: string;
-    dateAdded: string;
+    dateAdded?: string;
     __v: number;
 }
   

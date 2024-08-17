@@ -85,7 +85,7 @@ export class MiniCalendarComponent implements OnInit {
   // load the task
   // if task found then open taskDetails
   handleEventClick(info: EventClickArg) {
-    const taskId = info.event.id;
+    const taskId = info.event._def.extendedProps['taskDetails']._id;
 
     console.log('taskId in mini', taskId);
     console.log('Event clicked:', info.event);

@@ -33,7 +33,7 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/users?email=${email}`);
   }
 
-   addUser(userData: { username: string; email: string; fullName: string }): Observable<any> {
+  addUser(userData: { username: string; email: string; fullName: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/users/${userData.username}`, userData);
   }
 
@@ -51,6 +51,10 @@ export class ApiService {
 
   getTask(taskID: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/tasks/${taskID}`);
+  }
+
+  addUserTask(username:string, task: Task): Observable<Task> {
+    return this.http.post<Task>(`${this.baseUrl}/users/${username}/tasks`, task);
   }
 
   updateTask(taskID: string, task: any): Observable<any> {

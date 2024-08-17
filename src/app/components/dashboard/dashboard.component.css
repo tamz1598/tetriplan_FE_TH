@@ -85,6 +85,20 @@
   grid-row: 1;
 }
 
+.add-task {
+  display: flex;
+  grid-column: 3;
+  grid-row: 1;
+  cursor: pointer;
+}
+
+.addButton {
+  background-color: #d2eae5;
+  padding: 10px;
+  border-radius: 25%;
+  width: auto;
+  height: 30px;
+}
 
 .mini-calendar,
 .task-list,

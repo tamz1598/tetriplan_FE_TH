@@ -68,6 +68,12 @@ export class TaskService {
 
   updateTask(task: Task): Observable<any> {
     const { _id, userID, calendar, ...rest } = task;
+
+    // Ensure _id is not undefined before proceeding
+  if (!_id) {
+    console.error('Task ID (_id) is undefined. Cannot update task.');
+    throw new Error('Task ID (_id) is undefined. Cannot update task.');
+  }
     const taskUpdateData = {
       ...rest,
       calendar: calendar,
@@ -81,5 +87,9 @@ export class TaskService {
   deleteTask(taskID: string): Observable<any> {
     console.log('Deleting task:', taskID);
     return this.apiService.deleteTask(taskID);
+  }
+
+  addTask(username: string, task: Task): Observable<any> {
+    return this.apiService.addUserTask(username, task);
   }
 }
