@@ -34,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini-calendar.component';
 import { TaskDetailsComponent } from './components/dashboard/task-details/task-details.component';
 import { AddTaskComponent } from './components/dashboard/add-task/add-task.component';
+import { AIRecommendTasksComponent } from './components/dashboard/airecommend-tasks/airecommend-tasks.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AddTaskComponent } from './components/dashboard/add-task/add-task.compo
     TaskListComponent,
     TaskDetailsComponent,
     AddTaskComponent,
+    AIRecommendTasksComponent,
   ],
   imports: [
     BrowserModule,

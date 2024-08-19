@@ -53,13 +53,16 @@ import { filter } from 'rxjs/operators';
     }
   
     async handleUserLogin(email: string, fullName: string) {
+      this.setLoading(true);
       try {
         const existingUser = await this.apiService.getUserByEmail(email).toPromise();
         if (existingUser) {
           this.successMessage = 'User already exists. Redirecting to the dashboard...';
+          console.log("User already exists. Redirecting to the dashboard...")
         } else {
           await this.apiService.addUser({ username: fullName, email, fullName }).toPromise();
           this.successMessage = 'User created successfully. Redirecting to the dashboard...';
+          console.log("User created successfully. Redirecting to the dashboard...")
         }
         setTimeout(() => {
           this.navigateToDashboard();
@@ -67,7 +70,7 @@ import { filter } from 'rxjs/operators';
         }, 2000);
       } catch (error) {
         this.errorMessage = 'Error handling user login.';
-        console.error('User Login Error:', error);
+        console.error('User Login Error, set loading false:', error);
         this.setLoading(false);
       }
     }
@@ -82,6 +85,7 @@ import { filter } from 'rxjs/operators';
               const userFound = users.find(user => user.email === this.email && user.password === this.password);
               if (userFound) {
                 this.successMessage = 'Login successful. Redirecting to the dashboard...';
+                console.log("Login successful. Redirecting to the dashboard...")
                 localStorage.setItem('currentUserEmail', userFound.email);
                 localStorage.setItem('currentUserFullName', userFound.fullName);
                 setTimeout(() => {

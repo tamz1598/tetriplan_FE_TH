@@ -6,7 +6,15 @@
   <p><strong>Priority:</strong> {{task.priority}}</p>
   <p><strong>Start Time:</strong> {{task.startTime}}</p>
   <p><strong>End Time:</strong> {{task.endTime}}</p>
-  <p><strong>Completion Status:</strong> {{task.completionStatus ? 'Completed' : 'Not Completed'}}</p>
+  <p>
+    <strong>Completion Status:</strong>
+    <mat-checkbox
+      [(ngModel)]="task.completionStatus"
+      (change)="onCompletionStatusChange(task?._id)"
+      [ngClass]="{'completed': task.completionStatus, 'not-completed': !task.completionStatus}">
+      {{task.completionStatus ? 'Completed' : 'Not Completed'}}
+    </mat-checkbox>
+  </p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onClose()">Close</button>

@@ -40,6 +40,26 @@ export class TaskDetailsComponent implements OnInit {
     );
   }
 
+  onCompletionStatusChange(taskId: string | undefined): void {
+    if (taskId && this.task) {
+      const updatedStatus = !this.task.completionStatus;
+      this.apiService.updateTask(taskId, { completionStatus: updatedStatus })
+        .subscribe(
+          response => {
+            console.log('Task completion status updated:', response);
+            if (this.task) {
+              this.task.completionStatus = updatedStatus; 
+            } else {
+              console.log("task was null")
+            }         
+          },
+          error => {
+            console.error('Error updating task completion status:', error);
+          }
+        );
+    }
+  }
+
   onClose(): void {
     this.dialogRef.close();
   }

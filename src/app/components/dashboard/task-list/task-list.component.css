@@ -21,8 +21,18 @@ ul {
 }
 
 .highlight-task {
-    background-color: #6df25f !important;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    border: 2px solid blue;
+}
+
+/* Default style for incomplete tasks */
+.incomplete-task {
+    background-color: #3ab399;
+    color: black;
+}
+
+.completed-task {
+    background-color: lightgreen !important; 
+    color: rgb(3, 3, 3);
 }
 
 .list-container {
