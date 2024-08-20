@@ -14,6 +14,8 @@ export class TaskListComponent implements OnInit {
   @Input() loggedInUserName: string | null = null; // Input to receive logged-in username
   tasks: any[] = [];
   currentEditingTaskId: string | null = null;
+  isTaskDetailsVisible: boolean = false;
+  isTaskPopupVisible: boolean = false;
 
   constructor(private apiService: ApiService, private dialog: MatDialog) { }
 
@@ -28,22 +30,38 @@ export class TaskListComponent implements OnInit {
 
   // Method to view task details
   viewTaskDetails(task: any): void {
-    const taskId = task._id;
-    console.log(taskId)
-    const dialogRef = this.dialog.open(TaskDetailsComponent, {
-      width: '600px', 
-      height: 'auto',
-      data: { taskId }, 
-      panelClass: 'task-modal', 
-      autoFocus: false,
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    //check if task details visible
+    if (!this.isTaskDetailsVisible && !this.isTaskPopupVisible) {
+      this.isTaskDetailsVisible = true;
+      console.log("open task details dialog")
+
+      const taskId = task._id;
+      console.log(taskId)
+      const dialogRef = this.dialog.open(TaskDetailsComponent, {
+        width: '600px', 
+        height: 'auto',
+        data: { taskId }, 
+        panelClass: 'task-modal', 
+        autoFocus: false,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.isTaskDetailsVisible = false;
+      });
+    }
   }
 
   editTask(task: any): void {
+    if (this.isTaskDetailsVisible) {
+      this.dialog.closeAll(); 
+      this.isTaskDetailsVisible = false;
+      console.log("closing all dialog boxes")
+    }
+
     this.currentEditingTaskId = task._id; 
+    this.isTaskPopupVisible = true;
+
     const dialogRef = this.dialog.open(TaskDetailsPopupComponent, {
       width: '600px',
       height: 'auto',
@@ -54,6 +72,7 @@ export class TaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.currentEditingTaskId = null; // Reset after modal closes
+      this.isTaskPopupVisible = false;
       if (result) {
         // Refresh the task list if needed
         this.loadTasks();
@@ -89,6 +108,11 @@ export class TaskListComponent implements OnInit {
         }
       );
     }
+  }
+
+  // Update the task list with the new task
+  onTaskAdded(newTask: any): void {
+    this.tasks.push(newTask); 
   }
 
   onDragStart(event: DragEvent, task: any): void {

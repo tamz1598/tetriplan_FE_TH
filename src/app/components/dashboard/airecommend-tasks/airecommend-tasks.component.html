@@ -1,1 +1,12 @@
-<p>airecommend-tasks works!</p>
+<h2 mat-dialog-title>AI Recommended Tasks</h2>
+<div mat-dialog-content>
+  <ul>
+    <li *ngFor="let task of data.tasks" (click)="viewTaskDetails(task)">
+      <button mat-button>{{ task.taskName }}</button>
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>
+

@@ -2,53 +2,50 @@
 
 <div mat-dialog-content>
   <form *ngIf="editableTask">
-    <!-- Display task details with the option to edit -->
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="editableTask.taskName" name="title" [readonly]="!isEditing">
-      </mat-form-field>
-    </div>
+    <!-- Title Field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="editableTask.taskName" name="title" [readonly]="!isEditing">
+    </mat-form-field>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea matInput [(ngModel)]="editableTask.description" name="description" [readonly]="!isEditing"></textarea>
-      </mat-form-field>
-    </div>
+    <!-- Description Field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="editableTask.description" name="description" [readonly]="!isEditing"></textarea>
+    </mat-form-field>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Category</mat-label>
-        <mat-select [(ngModel)]="editableTask.category" name="category" [disabled]="!isEditing">
-          <mat-option *ngFor="let category of categories" [value]="category">
-            {{ category }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
 
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Labels</mat-label>
-        <input matInput [(ngModel)]="editableTask.label" name="labels" [readonly]="!isEditing">
-      </mat-form-field>
-    </div>
+    <!-- Category Field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="editableTask.category" name="category" [disabled]="!isEditing">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <div>
-      <mat-form-field>
-        <mat-label>Due Date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="editableTask.calendar" name="calendar" [readonly]="!isEditing">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
-      </mat-form-field>
-    </div>
+    <!-- Labels Field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Labels</mat-label>
+      <input matInput [(ngModel)]="editableTask.label" name="labels" [readonly]="!isEditing">
+    </mat-form-field>
 
-    <div>
-      <mat-checkbox [(ngModel)]="editableTask.completionStatus" name="completionStatus" [disabled]="!isEditing">
-        Completed
-      </mat-checkbox>
-    </div>
+    <!-- Due Date Field -->
+    <mat-form-field>
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="editableTask.calendar" name="calendar" [readonly]="!isEditing">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+      <!-- New Duration Field -->
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Duration</mat-label>
+          <input matInput [(ngModel)]="editableTask.duration" name="duration" [readonly]="!isEditing">
+        </mat-form-field>
+      </div>
   </form>
 </div>
 

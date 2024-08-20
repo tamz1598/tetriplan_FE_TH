@@ -35,6 +35,7 @@ import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini
 import { TaskDetailsComponent } from './components/dashboard/task-details/task-details.component';
 import { AddTaskComponent } from './components/dashboard/add-task/add-task.component';
 import { AIRecommendTasksComponent } from './components/dashboard/airecommend-tasks/airecommend-tasks.component';
+import { AiAddTaskComponent } from './components/dashboard/ai-add-task/ai-add-task.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AIRecommendTasksComponent } from './components/dashboard/airecommend-ta
     TaskDetailsComponent,
     AddTaskComponent,
     AIRecommendTasksComponent,
+    AiAddTaskComponent,
   ],
   imports: [
     BrowserModule,

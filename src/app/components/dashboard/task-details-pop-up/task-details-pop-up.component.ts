@@ -103,25 +103,6 @@ export class TaskDetailsPopupComponent {
     );
   }
 
-  handleTaskCompleted(): void {
-    // Toggle the task's completion status
-    this.editableTask.completionStatus = !this.editableTask.completionStatus;
-
-    // Update task's completion status using TaskService
-    this.taskService.updateTask(this.editableTask).subscribe(
-      (response) => {
-        console.log('Task completion status updated:', response);
-        this.completeTask.emit(this.editableTask.completionStatus);
-        this.taskUpdated.emit(this.editableTask);
-        this.taskRefreshService.triggerReloadTasks();
-        this.closeDialog();
-      },
-      (error) => {
-        console.error('Error updating task completion status:', error);
-      }
-    );
-  }
-
   readonly exampleHeader = ExampleHeader;
 }
 

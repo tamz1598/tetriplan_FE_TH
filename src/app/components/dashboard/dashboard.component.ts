@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+import { AIRecommendTasksComponent } from './airecommend-tasks/airecommend-tasks.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +15,8 @@ export class DashboardComponent implements OnInit{
   userLoaded: boolean = false;
   welcomeMessage: string | null = null;
   taskMessage: string | null = null;
+  recommendedTasks: any[] = []; // To store recommended tasks
+  tasks: any[] = [];
 
   constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
@@ -52,6 +56,61 @@ export class DashboardComponent implements OnInit{
     }
   }
 
+   // Method to fetch recommended tasks
+   fetchRecommendedTasks(): void {
+    if (this.loggedInUserName) {
+      this.apiService.getRecommendedTasks(this.loggedInUserName).subscribe(
+        response => {
+          const tasks = response.recommendedTasks || []; 
+          console.log("this is the tasks for AI", response.recommendedTasks)
+            // Open the modal with the recommended tasks
+          const dialogRef = this.dialog.open(AIRecommendTasksComponent, {
+            width: '600px',
+            data: { tasks, loggedInUserName: this.loggedInUserName  } // Pass the tasks to the modal
+          });
+          dialogRef.afterClosed().subscribe(selectedTask => {
+            if (selectedTask) {
+              // Open task details for the selected task
+              this.viewTaskDetails(selectedTask);
+            }
+          });
+        },
+        error => {
+          console.error('Error fetching recommended tasks:', error);
+        }
+      );
+    }
+  }
+
+  fetchTasks(): void {
+    if (this.loggedInUserName) {
+      this.apiService.getUserTasks(this.loggedInUserName).subscribe(
+        response => {
+          this.tasks = response.tasks || [];
+          console.log('Tasks fetched:', this.tasks);
+        },
+        error => {
+          console.error('Error fetching tasks:', error);
+        }
+      );
+    }
+  }
+
+  // Method to view task details
+  viewTaskDetails(task: any): void {
+    const taskId = task._id;
+    const dialogRef = this.dialog.open(TaskDetailsComponent, {
+      width: '600px', 
+      height: 'auto',
+      data: {  }, 
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any result if needed, nothing right now
+    });
+  }
+
   openAddTaskModal(): void {
     if (!this.loggedInUserName) {
       console.error('No username available to pass to the modal');
@@ -68,4 +127,6 @@ export class DashboardComponent implements OnInit{
       // Handle the result here if needed
     });
   }
+
+
 }

@@ -18,8 +18,11 @@
         <div class="mini-calendar">
           <app-mini-calendar [loggedInUserName]="loggedInUserName"></app-mini-calendar>
         </div>
-        <div class="aiButton">
-          <app-airecommend-tasks></app-airecommend-tasks>
+        <div class="recommended-tasks">
+          <button mat-button (click)="fetchRecommendedTasks()">Get AI Recommended Tasks</button>
+          <div *ngIf="recommendedTasks.length === 0">
+            <p>No recommended tasks found.</p>
+          </div>
         </div>
       </div>
       <div class="task-message">
@@ -29,7 +32,8 @@
         <img class='addButton'src="assets/addTask.png" (click)="openAddTaskModal()" alt="Add Task"/>
       </div>
       <div class="task-list">
-        <app-task-list [loggedInUserName]="loggedInUserName"></app-task-list>
+        <app-task-list [loggedInUserName]="loggedInUserName">
+        </app-task-list>
       </div>
     </div>
     <div class="day-view-calendar">
