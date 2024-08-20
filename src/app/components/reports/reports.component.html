@@ -1,0 +1,52 @@
+<div class="report-container">
+    <div class="user-main">
+      <div class="title">
+        <div class="logo">
+          <h2><img class='logoTitle' src="assets/logo2.png" alt="Logo">
+          TetriPlan
+          </h2>
+        </div>
+        <div class="navbar">
+          <a routerLink="/dashboard">Dashboard</a>
+          <a routerLink="/reports">Reports</a>
+          <a routerLink="/login">Login</a>
+        </div>
+      </div>
+  
+      <div class="workspace">
+        <!-- Workspace Dropdown -->
+        <div class="drop-down">
+          <label for="workspace">Workspace:</label>
+          <select id="workspace" [(ngModel)]="selectedWorkspace" (change)="selectWorkspace(selectedWorkspace)">
+            <option *ngFor="let workspace of workspaces$ | async" [value]="workspace.name">
+              {{ workspace.name }}
+            </option>
+          </select>
+          <button class="add-workspace-btn" (click)="addWorkspace()">+</button>
+        </div>
+  
+        <!-- Boards Section -->
+        <div class="boards" *ngIf="currentWorkspace$ | async as workspace">
+          <h3>Boards</h3>
+          <ul>
+            <li *ngFor="let board of workspace.boards">{{ board.name }}</li>
+          </ul>
+          <button (click)="addBoard()">Add Board</button>
+        </div>
+  
+        <!-- Widget Button and Title -->
+        <div class="widget">
+          <button class="add-widget-btn">Add Widget</button>
+          <h3 class="workspace-title">{{ selectedWorkspace }}</h3>
+          <button class="save-board-btn">Save</button>
+        </div>
+  
+        <!-- Visual Section -->
+        <div class="visual">
+          <h4>Visual Board</h4>
+          <!-- Placeholder for the visual elements like charts -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

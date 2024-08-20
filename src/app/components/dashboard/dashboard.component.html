@@ -2,11 +2,13 @@
   <div class= 'user-main' *ngIf="userLoaded">
     <div class="title">
     <div class="logo">
-      <h2>TetriPlan</h2>
+      <h2><img class='logoTitle' src="assets/logo2.png" alt="Logo">
+      TetriPlan
+      </h2>
     </div>
     <div class="navbar">
       <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/login">Reports</a>
+      <a routerLink="/report">Reports</a>
       <a routerLink="/login">Login</a>
     </div>
   </div>
@@ -21,7 +23,6 @@
         <div class="recommended-tasks">
           <button mat-button (click)="fetchRecommendedTasks()">Get AI Recommended Tasks</button>
           <div *ngIf="recommendedTasks.length === 0">
-            <p>No recommended tasks found.</p>
           </div>
         </div>
       </div>
@@ -29,7 +30,7 @@
         {{ taskMessage }}
       </div>
       <div class="add-task">
-        <img class='addButton'src="assets/addTask.png" (click)="openAddTaskModal()" alt="Add Task"/>
+        <p><img class='addButton'src="assets/addTask.png" (click)="openAddTaskModal()" alt="Add Task"/></p><p> Add A Task </p>
       </div>
       <div class="task-list">
         <app-task-list [loggedInUserName]="loggedInUserName">

@@ -36,6 +36,7 @@ import { TaskDetailsComponent } from './components/dashboard/task-details/task-d
 import { AddTaskComponent } from './components/dashboard/add-task/add-task.component';
 import { AIRecommendTasksComponent } from './components/dashboard/airecommend-tasks/airecommend-tasks.component';
 import { AiAddTaskComponent } from './components/dashboard/ai-add-task/ai-add-task.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AiAddTaskComponent } from './components/dashboard/ai-add-task/ai-add-ta
     AddTaskComponent,
     AIRecommendTasksComponent,
     AiAddTaskComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
