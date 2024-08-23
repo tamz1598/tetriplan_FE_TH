@@ -1,43 +1,30 @@
-
-.fc {
-
-  & .fc-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  & .fc-toolbar.fc-header-toolbar {
-    margin-bottom: 1.5em;
-  }
-
-  & .fc-toolbar.fc-footer-toolbar {
-    margin-top: 1.5em;
-  }
-
-  & .fc-toolbar-title {
-    font-size: 1.75em;
-    margin: 0;
-  }
-
+.fc .fc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.fc-direction-ltr {
-
-  & .fc-toolbar > * > :not(:first-child) {
-    margin-left: .75em; // space between
-  }
-
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1.5em;
 }
 
-.fc-direction-rtl {
+.fc .fc-toolbar.fc-footer-toolbar {
+  margin-top: 1.5em;
+}
 
-  & .fc-toolbar > * > :not(:first-child) {
-    margin-right: .75em; // space between
-  }
+.fc .fc-toolbar-title {
+  font-size: 1.75em;
+  margin: 0;
+}
 
-  & .fc-toolbar-ltr { // when the toolbar-chunk positioning system is explicitly left-to-right
-    flex-direction: row-reverse;
-  }
+.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+  margin-left: 0.75em; /* space between */
+}
 
+.fc-direction-rtl .fc-toolbar > * > :not(:first-child) {
+  margin-right: 0.75em; /* space between */
+}
+
+.fc-direction-rtl .fc-toolbar-ltr {
+  flex-direction: row-reverse;
 }

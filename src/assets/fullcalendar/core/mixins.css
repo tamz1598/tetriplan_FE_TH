@@ -1,5 +1,5 @@
-
-@mixin liquid-absolute-override {
+/* Mixin for liquid-absolute-override */
+.liquid-absolute-override {
   height: auto;
   position: absolute;
   top: 0;
@@ -8,14 +8,23 @@
   left: 0;
 }
 
-@mixin clearfix {
+/* Mixin for clearfix */
+.clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
 
-@mixin bg-z-indexes { // TODO: kill
-  & .fc-non-business { z-index: 1 }
-  & .fc-bg-event { z-index: 2 }
-  & .fc-highlight { z-index: 3 }
+/* Mixin for bg-z-indexes */
+.fc-non-business {
+  z-index: 1;
 }
+
+.fc-bg-event {
+  z-index: 2;
+}
+
+.fc-highlight {
+  z-index: 3;
+}
+

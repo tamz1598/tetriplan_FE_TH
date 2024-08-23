@@ -1,41 +1,42 @@
-
 .fc {
-  // layout of immediate children
+  /* // layout of immediate children */
   display: flex;
   flex-direction: column;
-
   font-size: 1em;
+}
 
-  &,
-  & *,
-  & *:before,
-  & *:after {
-    box-sizing: border-box;
-  }
+.fc,
+.fc * {
+  box-sizing: border-box;
+}
 
-  & table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    font-size: 1em; // normalize cross-browser
-  }
+.fc *:before,
+.fc *:after {
+  box-sizing: border-box;
+}
 
-  & th {
-    text-align: center;
-  }
+.fc table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+}
 
-  & th,
-  & td {
-    vertical-align: top;
-    padding: 0;
-  }
+.fc th {
+  text-align: center;
+}
 
-  & a[data-navlink] {
-    cursor: pointer;
-  }
+.fc th,
+.fc td {
+  vertical-align: top;
+  padding: 0;
+}
 
-  & a[data-navlink]:hover {
-    text-decoration: underline;
-  }
+.fc a[data-navlink] {
+  cursor: pointer;
+}
+
+.fc a[data-navlink]:hover {
+  text-decoration: underline;
 }
 
 .fc-direction-ltr {
@@ -48,21 +49,16 @@
   text-align: right;
 }
 
-.fc-theme-standard {
-  & td,
-  & th {
-    border: 1px solid var(--fc-border-color);
-  }
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: 1px solid var(--fc-border-color);
 }
 
+/* 
 // for FF, which doesn't expand a 100% div within a table cell. use absolute positioning
 // inner-wrappers are responsible for being absolute
-// TODO: best place for this?
-.fc-liquid-hack {
-
-  & td,
-  & th {
-    position: relative;
-  }
-
+// TODO: best place for this? */
+.fc-liquid-hack td,
+.fc-liquid-hack th {
+  position: relative;
 }

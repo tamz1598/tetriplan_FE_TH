@@ -5,8 +5,8 @@
     position: relative;
     overflow: hidden;
     direction: ltr;
-      // hack for chrome computing the scroller's right/left wrong for rtl. undone below...
-      // TODO: demonstrate in codepen
+      /* // hack for chrome computing the scroller's right/left wrong for rtl. undone below...
+      // TODO: demonstrate in codepen */
   }
 
   & .fc-scroller-harness-liquid {
@@ -17,7 +17,7 @@
 
 .fc-direction-rtl {
 
-  & .fc-scroller-harness > .fc-scroller { // undo above hack
+  & .fc-scroller-harness > .fc-scroller { 
     direction: rtl;
   }
 

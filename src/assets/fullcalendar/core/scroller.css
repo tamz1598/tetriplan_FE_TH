@@ -1,21 +1,17 @@
+/* Styles for scroller elements */
+.fc .fc-scroller {
+  -webkit-overflow-scrolling: touch;
+  position: relative; /* for absolutely positioned elements within */
+}
 
-.fc {
+.fc .fc-scroller-liquid {
+  height: 100%;
+}
 
-  & .fc-scroller {
-    -webkit-overflow-scrolling: touch;
-    position: relative; // for abs-positioned elements within
-  }
-
-  & .fc-scroller-liquid {
-    height: 100%;
-  }
-
-  & .fc-scroller-liquid-absolute {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-  }
-
+.fc .fc-scroller-liquid-absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }

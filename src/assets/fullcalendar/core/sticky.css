@@ -1,4 +1,3 @@
-
-.fc-sticky { // no .fc wrap because used as child of body
+.fc-sticky {
   position: sticky;
 }

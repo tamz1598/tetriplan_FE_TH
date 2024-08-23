@@ -1,51 +1,45 @@
-
-/*
-A HORIZONTAL event
-*/
-
+/* A HORIZONTAL event */
 .fc-h-event {
   display: block;
   border-radius: 100% !important;
   border: none;
-
-  & .fc-event-main {
-    color: var(--fc-event-text-color);
-  }
-
-  & .fc-event-main-frame {
-    display: flex;
-  }
-
-  & .fc-event-time {
-    max-width: 100%;
-    overflow: hidden;
-  }
-
-  & .fc-event-title-container { // serves as a container for the sticky cushion
-    flex-grow: 1;
-    flex-shrink: 1;
-    min-width: 0; // important for allowing to shrink all the way
-  }
-
-  & .fc-event-title {
-    display: inline-block; // need this to be sticky cross-browser
-    vertical-align: top; // for not messing up line-height
-    left: 0;  // for sticky
-    right: 0; // for sticky
-    max-width: 100%; // clip overflow on this element
-    overflow: hidden;
-  }
-
-  &.fc-event-selected:before {
-    // expand hit area
-    top: -10px;
-    bottom: -10px;
-  }
-
 }
 
-// adjust border and border-radius (if there is any) for non-start/end
+.fc-h-event .fc-event-main {
+  color: var(--fc-event-text-color);
+}
 
+.fc-h-event .fc-event-main-frame {
+  display: flex;
+}
+
+.fc-h-event .fc-event-time {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fc-h-event .fc-event-title-container {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.fc-h-event .fc-event-title {
+  display: inline-block; /* need this to be sticky cross-browser */
+  vertical-align: top; /* for not messing up line-height */
+  left: 0;  /* for sticky */
+  right: 0; /* for sticky */
+  max-width: 100%; /* clip overflow on this element */
+  overflow: hidden;
+}
+
+.fc-h-event.fc-event-selected:before {
+  /* expand hit area */
+  top: -10px;
+  bottom: -10px;
+}
+
+/* adjust border and border-radius (if there is any) for non-start/end */
 .fc-direction-ltr .fc-daygrid-block-event:not(.fc-event-start),
 .fc-direction-rtl .fc-daygrid-block-event:not(.fc-event-end) {
   border-top-left-radius: 0;
@@ -60,8 +54,7 @@ A HORIZONTAL event
   border-right-width: 0;
 }
 
-// resizers
-
+/* resizers */
 .fc-h-event:not(.fc-event-selected) .fc-event-resizer {
   top: 0;
   bottom: 0;
@@ -80,8 +73,7 @@ A HORIZONTAL event
   right: calc(-0.5 * var(--fc-event-resizer-thickness));
 }
 
-// resizers for TOUCH
-
+/* resizers for TOUCH */
 .fc-h-event.fc-event-selected .fc-event-resizer {
   top: 50%;
   margin-top: calc(-0.5 * var(--fc-event-resizer-dot-total-width));

@@ -1,39 +1,33 @@
+.fc .fc-bg-event,
+.fc .fc-non-business,
+.fc .fc-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-.fc {
+.fc .fc-non-business {
+  background: var(--fc-non-business-color);
+}
 
-  & .fc-bg-event,
-  & .fc-non-business,
-  & .fc-highlight {
-    // will always have a harness with position:relative/absolute, so absolutely expand
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+.fc .fc-bg-event {
+  background: var(--fc-bg-event-color);
+  opacity: var(--fc-bg-event-opacity);
+}
 
-  & .fc-non-business {
-    background: var(--fc-non-business-color);
-  }
+.fc .fc-bg-event .fc-event-title {
+  margin: .5em;
+  font-size: var(--fc-small-font-size);
+  font-style: italic;
+}
 
-  & .fc-bg-event {
-    background: var(--fc-bg-event-color);
-    opacity: var(--fc-bg-event-opacity);
+.fc .fc-highlight {
+  background: var(--fc-highlight-color);
+}
 
-    & .fc-event-title {
-      margin: .5em;
-      font-size: var(--fc-small-font-size);
-      font-style: italic;
-    }
-  }
-
-  & .fc-highlight {
-    background: var(--fc-highlight-color);
-  }
-
-  & .fc-cell-shaded,
-  & .fc-day-disabled {
-    background: var(--fc-neutral-bg-color);
-  }
-
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+  background: var(--fc-neutral-bg-color);
 }
