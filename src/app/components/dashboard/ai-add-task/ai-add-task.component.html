@@ -10,7 +10,7 @@
     <strong>Completion Status:</strong>
     <mat-checkbox
       [(ngModel)]="task.completionStatus"
-      (change)="onCompletionStatusChange(task?._id)"
+      (change)="onCompletionStatusChange(task._id)"
       [ngClass]="{'completed': task.completionStatus, 'not-completed': !task.completionStatus}">
       {{task.completionStatus ? 'Completed' : 'Not Completed'}}
     </mat-checkbox>
