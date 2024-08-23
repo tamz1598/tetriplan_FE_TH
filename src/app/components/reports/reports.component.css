@@ -22,6 +22,26 @@ display: contents;
   border-right: double;
 }
 
+.workspace .drop-down select {
+  width:200px;
+  height: 30px;
+  font-size: 1em;
+}
+
+.workspace button {
+  background-color: #3ab399;
+  border: #1d6354;
+}
+
+.add-widget-btn {
+  padding: 20px !important;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgb(132, 177, 192);
+  font-size: 1.5em;
+  cursor: pointer;
+  background-color: #91edd9 !important;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -178,4 +198,14 @@ app-widget-modal {
   flex-wrap:wrap; 
   width: 300px !important;
   height: auto !important;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+.save-board-btn {
+  border-radius: 25px;
+  padding: 20px;
+  cursor: pointer;
 }

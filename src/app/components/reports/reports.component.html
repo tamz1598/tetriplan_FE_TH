@@ -16,7 +16,7 @@
     <div class="workspace">
       <!-- Workspace Dropdown -->
       <div class="drop-down">
-        <label for="workspace">Workspace:</label>
+        <label for="workspace"></label>
         <select id="workspace" [(ngModel)]="selectedWorkspace" (change)="selectWorkspace(selectedWorkspace)">
           <option *ngFor="let workspace of workspaces$ | async" [value]="workspace.name">
             {{ workspace.name }}
