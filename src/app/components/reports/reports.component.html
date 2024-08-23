@@ -41,19 +41,20 @@
         <button class="save-board-btn">Save</button>
       </div>
 
-      <!-- Widget Container -->
-      <div class="widget-container"></div>
       
-      <!-- Widget Modal -->
-      <app-widget-modal 
-      [isVisible]="isModalVisible" 
-      (widgetConfirmed)="onWidgetConfirmed($event)">
-      </app-widget-modal>
-
+      
       <!-- Visual Section -->
       <div class="visual">
         <h4>Visual Board</h4>
         <!-- Placeholder for the visual elements like charts -->
+        <!-- Widget Container -->
+        <div class="widget-container">
+        </div>
+        <!-- Widget Modal -->
+        <app-widget-modal 
+        [isVisible]="isModalVisible" 
+        (widgetConfirmed)="onWidgetConfirmed($event)">
+        </app-widget-modal>
       </div>
     </div>
   </div>

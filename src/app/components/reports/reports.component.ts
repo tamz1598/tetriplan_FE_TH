@@ -86,6 +86,7 @@ export class ReportsComponent implements OnInit {
 
       // Create a canvas element for the chart
       const canvas = document.createElement('canvas');
+      canvas.className = 'chart-canvas'; 
       widgetElement.appendChild(canvas);
 
       // Render the chart
@@ -102,7 +103,7 @@ export class ReportsComponent implements OnInit {
   renderChart(canvas:  HTMLCanvasElement, chartType: ChartType, dataType: DataType) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
+    
     // Sample data fetching (replace with actual data fetching logic)
     const data = this.fetchChartData(dataType);
 
