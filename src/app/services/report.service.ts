@@ -1,65 +1,83 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Workspace, Board, DataType } from '../models/report.model'; 
+import { ChartType } from 'chart.js'; 
 
-
-interface Board {
-  name: string;
-  charts: any[]; // This can be any type of chart or widget
-}
-
-interface Workspace {
-  name: string;
-  boards: Board[];
-}
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
-  private workspaces = new BehaviorSubject<Workspace[]>([]);
-  private currentWorkspace = new BehaviorSubject<Workspace | null>(null);
+  private workspacesSubject = new BehaviorSubject<Workspace[]>([]);
+  private currentWorkspaceSubject = new BehaviorSubject<Workspace | null>(null);
 
   constructor() { 
     // Optionally, initialize with some data
     const initialWorkspaces: Workspace[] = [
-      { name: 'Workspace 1', boards: [{ name: 'Board 1', charts: [] }] }
+      { name: 'Workspace 1', boards: [{ name: 'Board 1', charts: [], widgets: [] }] }
     ];
-    this.workspaces.next(initialWorkspaces);
-    this.currentWorkspace.next(initialWorkspaces[0]);
+    this.workspacesSubject.next(initialWorkspaces);
+    this.currentWorkspaceSubject.next(initialWorkspaces[0]);
   }
 
   addWorkspace(name: string): void {
-    const newWorkspace: Workspace = { name, boards: [] };
-    const updatedWorkspaces = [...this.workspaces.getValue(), newWorkspace];
-    this.workspaces.next(updatedWorkspaces);
+    const workspaces = this.workspacesSubject.value;
+    workspaces.push({ name, boards: [] });
+    this.workspacesSubject.next(workspaces);
   }
 
   getWorkspaces(): Observable<Workspace[]> {
-    return this.workspaces.asObservable();
+    return this.workspacesSubject.asObservable();
   }
 
   setCurrentWorkspace(workspace: Workspace): void {
-    this.currentWorkspace.next(workspace);
+    this.currentWorkspaceSubject.next(workspace);
   }
 
   getCurrentWorkspace(): Observable<Workspace | null> {
-    return this.currentWorkspace.asObservable();
+    return this.currentWorkspaceSubject.asObservable();
   }
 
   addBoardToCurrentWorkspace(boardName: string): void {
-    const workspace = this.currentWorkspace.getValue();
+    const workspace = this.currentWorkspaceSubject.getValue();
     if (workspace) {
-      workspace.boards.push({ name: boardName, charts: [] });
-      this.updateWorkspace(workspace);
+      workspace.boards.push({ name: boardName, charts: [], widgets: [] });
+      this.workspacesSubject.next(this.workspacesSubject.value);
+      this.currentWorkspaceSubject.next(workspace);
     }
   }
 
+  saveBoardToWorkspace(workspaceName: string, boardName: string, charts: any[], widgets: Array<{ chartType: ChartType, dataType: DataType }>) {
+    const workspaces = this.workspacesSubject.value;
+    const workspace = workspaces.find(ws => ws.name === workspaceName);
+    if (workspace) {
+      const board = workspace.boards.find(b => b.name === boardName);
+      if (board) {
+        board.widgets = widgets;
+      } else {
+        workspace.boards.push({ name: boardName, charts, widgets });
+      }
+      this.workspacesSubject.next(workspaces);
+    }
+  }
+
+  loadBoardFromWorkspace(workspaceName: string, boardName: string): Observable<Array<{ chartType: ChartType, dataType: DataType }>> {
+    const workspace = this.workspacesSubject.value.find(ws => ws.name === workspaceName);
+    if (workspace) {
+      const board = workspace.boards.find(b => b.name === boardName);
+      if (board) {
+        return of(board.widgets);
+      }
+    }
+    return of([]);
+  }
+
   updateWorkspace(updatedWorkspace: Workspace): void {
-    const workspaces = this.workspaces.getValue().map(ws => 
+    const workspaces = this.workspacesSubject.getValue().map(ws => 
       ws.name === updatedWorkspace.name ? updatedWorkspace : ws
     );
-    this.workspaces.next(workspaces);
+    this.workspacesSubject.next(workspaces);
   }
   
 }

@@ -29,7 +29,7 @@
       <div class="boards" *ngIf="currentWorkspace$ | async as workspace">
         <h3>Boards</h3>
         <ul>
-          <li *ngFor="let board of workspace.boards">{{ board.name }}</li>
+          <li *ngFor="let board of workspace.boards" (click)="loadBoard(board.name)">{{ board.name }}</li>
         </ul>
         <button (click)="addBoard()">Add Board</button>
       </div>
@@ -38,7 +38,7 @@
       <div class="widget">
         <button class="add-widget-btn" (click)="openModal()">Add Widget</button>
         <h3 class="workspace-title">{{ selectedWorkspace }}</h3>
-        <button class="save-board-btn">Save</button>
+        <button class="save-board-btn" (click)="saveBoard()">Save</button>
       </div>
 
       

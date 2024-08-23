@@ -40,6 +40,9 @@ display: contents;
 }
 
 .logo h2 {
+  font-family: Virgil;
+  color: #3ab399;
+  font-size: 3em;
   display: flex;
   align-items: center;
   margin: 0 !important;
@@ -170,5 +173,9 @@ app-widget-modal {
 }
 
 .widget-container {
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap:wrap; 
+  width: 300px !important;
+  height: auto !important;
 }

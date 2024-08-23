@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../../services/report.service';
 import { Chart, ChartType, ChartOptions, registerables, TooltipItem } from 'chart.js';
+import { BehaviorSubject } from 'rxjs';
 
 Chart.register(...registerables);
 
@@ -19,6 +20,7 @@ export class ReportsComponent implements OnInit {
 
   isModalVisible: boolean = false;
   widgets: Array<{chartType: ChartType, dataType: DataType}> = [];
+  charts: any[] = [];
 
   constructor(private reportService: ReportService) {}
 
@@ -42,6 +44,7 @@ export class ReportsComponent implements OnInit {
       const selected = workspaces.find(ws => ws.name === workspaceName);
       if (selected) {
         this.reportService.setCurrentWorkspace(selected);
+        this.widgets = []; // Clear the visual section when changing workspace
       }
     });
   }
@@ -97,6 +100,15 @@ export class ReportsComponent implements OnInit {
         widgetContainer.appendChild(widgetElement);
       }
     });
+    this.updateCharts();
+  }
+
+  updateCharts() {
+    this.charts = this.widgets.map(widget => ({
+      type: widget.chartType,
+      data: this.fetchChartData(widget.dataType),
+      options: this.getChartOptions()
+    }));
   }
 
   // Method to render a chart based on type and data
@@ -175,5 +187,22 @@ export class ReportsComponent implements OnInit {
         }
       }
     };
+  }
+
+  // logic for saving board
+  saveBoard() {
+    if (this.selectedWorkspace && this.widgets.length > 0) {
+      const boardName = prompt('Enter board name to save:');
+      if (boardName) {
+        this.reportService.saveBoardToWorkspace(this.selectedWorkspace, boardName, this.charts, this.widgets);
+      }
+    }
+  }
+
+  loadBoard(boardName: string) {
+    this.reportService.loadBoardFromWorkspace(this.selectedWorkspace, boardName).subscribe(widgets => {
+      this.widgets = widgets;
+      this.renderWidgets();
+    });
   }
 }
