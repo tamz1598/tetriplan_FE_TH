@@ -3,12 +3,18 @@ ul li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #3ab399;
-    border: 1px solid #ccc;
+    background-color: #f9f0ad;
+    border: 1px solid #d1d59c;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
     cursor: pointer;
+    box-shadow: -5px 8px #e2e2e2;
+    font-family: Virgil;
+}
+
+ul li:hover {
+    background-color: #f8eb8c;
 }
 
 ul {
@@ -20,14 +26,37 @@ ul {
     list-style: none;
 }
 
+.edit-button {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #3ab399;
+    border: 1px solid #2e907b;
+    color: aliceblue;
+}
+
+.delete-button {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #dc5151;
+    border: 1px solid #931c1c;
+    color: aliceblue;
+}
+
+.edit-button:hover {
+    background-color: #4ec9ae;  
+}
+
+.delete-button:hover {
+    background-color: #e96868;  
+}
+
 .highlight-task {
     border: 2px solid blue;
 }
 
 /* Default style for incomplete tasks */
 .incomplete-task {
-    background-color: #3ab399;
+    background-color: #82d3c2;
     color: black;
+
 }
 
 .completed-task {

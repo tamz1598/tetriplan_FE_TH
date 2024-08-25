@@ -16,7 +16,7 @@
 
 .user-content {
   display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr 1fr;
   gap: 20px;
   grid-column: 1 / span 1;
@@ -31,6 +31,10 @@
   gap: 20px;
   grid-column: 1;
   grid-row: 1 /span 2;
+  background-color: #82d3c2;
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 5%;
 }
 
 .title {
@@ -73,6 +77,7 @@
   padding-right: 20px;
   grid-column: 2 /span 2;
   grid-row: 1;
+  font-family: Virgil;
 }
 
 .navbar a {
@@ -120,9 +125,18 @@
   grid-column: 3;
   grid-row: 1;
   cursor: pointer;
-  border: 4px solid #269c82;
+  border: 4px solid #f6f6f6;
+  border-style: outset;
   border-radius: 10px;
   width: 200px;
+}
+
+.add-task:hover {
+  background-color: #95e9d8;
+}
+
+.add-task p:hover {
+  color: white;
 }
 
 .add-task p {
@@ -130,10 +144,12 @@
   justify-content: center;
   align-items: center;
   margin: 5px;
+  color: #3ab399;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .addButton {
-  background-color: #d2eae5;
+  background-color: #95e9d8;
   padding: 10px;
   border-radius: 25px;
   width: auto;
@@ -188,8 +204,14 @@ h2 {
   cursor: pointer;
   width: 150px;
   align-items: center;
-  margin-left: 40px;
-  margin-bottom: 40px;
+  margin-left: 23%;
+  margin-bottom: 15%;
   padding: 10px;
+  color:azure;
+  box-shadow: 0px 8px #73bcac;
+}
+
+.recommended-tasks button:hover {
+  background-color: #5ad8bd !important;
 }
 
