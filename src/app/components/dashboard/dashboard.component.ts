@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { AIRecommendTasksComponent } from './airecommend-tasks/airecommend-tasks.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,42 +20,55 @@ export class DashboardComponent implements OnInit{
   recommendedTasks: any[] = []; // To store recommended tasks
   tasks: any[] = [];
 
-  constructor(private apiService: ApiService, private dialog: MatDialog) {}
+  constructor(private apiService: ApiService, private dialog: MatDialog, private afAuth: AngularFireAuth,
+    private router: Router) {}
 
   ngOnInit() {
     const currentUserEmail = localStorage.getItem('currentUserEmail');
     console.log('Current user email:', currentUserEmail);
-    
-    if (currentUserEmail) {
-      this.apiService.getUserByEmail(currentUserEmail).subscribe(
-        response => {
-          console.log('Response from API:', response);
 
-          if (response && response.users) {
-            const user = response.users.find((u: any) => u.email === currentUserEmail);
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        console.log('Authenticated user:', user);
+        const currentUserEmail = localStorage.getItem('currentUserEmail');
+        console.log('Current user email:', currentUserEmail);
+        
+        if (currentUserEmail) {
+          this.apiService.getUserByEmail(currentUserEmail).subscribe(
+            response => {
+              console.log('Response from API, the user:', response);
 
-            if (user) {
-              this.loggedInUserName = `${user.username}`;
-              this.welcomeMessage = `Hello ${this.loggedInUserName}`
-              this.taskMessage = `task for ${this.loggedInUserName}`
-              console.log('User found:', user);
-              console.log('User full name:', user.fullName);
-              this.userLoaded = true; 
-            } else {
-              console.error('User not found in backend for email:', currentUserEmail);
+              if (response && response.users) {
+                const user = response.users.find((u: any) => u.email === currentUserEmail);
+                console.log("user:", user)
+
+                if (user) {
+                  this.loggedInUserName = `${user.username}`;
+                  this.welcomeMessage = `Hello ${this.loggedInUserName}`
+                  this.taskMessage = `task for ${this.loggedInUserName}`
+                  console.log('User found:', user);
+                  console.log('User full name:', user.fullName);
+                  this.userLoaded = true; 
+                } else {
+                  console.error('User not found in backend for email:', currentUserEmail);
+                  this.userLoaded = true;
+                }
+              } else {
+                console.error('Unexpected response format:', response);
+                this.userLoaded = true;
+              }
+            },
+            error => {
+              console.error('Error fetching user details from backend:', error);
               this.userLoaded = true;
             }
-          } else {
-            console.error('Unexpected response format:', response);
-            this.userLoaded = true;
-          }
-        },
-        error => {
-          console.error('Error fetching user details from backend:', error);
-          this.userLoaded = true;
+          );
         }
-      );
-    }
+      } else {
+        console.log('No authenticated user found. Redirecting to login page.');
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
    // Method to fetch recommended tasks
