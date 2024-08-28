@@ -31,7 +31,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MiniCalendarComponent } from './components/dashboard/mini-calendar/mini-calendar.component';
 import { TaskDetailsComponent } from './components/dashboard/task-details/task-details.component';
 import { AddTaskComponent } from './components/dashboard/add-task/add-task.component';
 import { AIRecommendTasksComponent } from './components/dashboard/airecommend-tasks/airecommend-tasks.component';
@@ -41,6 +40,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { WidgetModalComponent } from './components/reports/widget-modal/widget-modal.component';
 import { ChartTypeSelectionComponent } from './components/reports/chart-type-selection/chart-type-selection.component';
 import { DataTypeSelectionComponent } from './components/reports/data-type-selection/data-type-selection.component';
+import { MiniComponent } from './components/dashboard/mini/mini.component';
 
 
 @NgModule({
@@ -58,6 +58,7 @@ import { DataTypeSelectionComponent } from './components/reports/data-type-selec
     WidgetModalComponent,
     ChartTypeSelectionComponent,
     DataTypeSelectionComponent,
+    MiniComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +80,6 @@ import { DataTypeSelectionComponent } from './components/reports/data-type-selec
     DatePickerComponent,
     TaskDetailsPopupComponent,
     FullCalendarModule,
-    MiniCalendarComponent,
     MatRadioModule,
   ],
   providers: [MatDatepickerModule],

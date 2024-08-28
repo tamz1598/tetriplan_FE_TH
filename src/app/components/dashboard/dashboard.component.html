@@ -18,7 +18,9 @@
           {{ welcomeMessage }}
         </div>
         <div class="mini-calendar">
-          <app-mini-calendar [loggedInUserName]="loggedInUserName"></app-mini-calendar>
+          <section style="width:200px">
+            <app-mini [loggedInUserName]="loggedInUserName"></app-mini>
+          </section>
         </div>
         <div class="recommended-tasks">
           <button mat-button (click)="fetchRecommendedTasks()">Get AI Recommended Tasks</button>
@@ -42,6 +44,5 @@
     </div>
   </div>
 </div>
-  
   
   

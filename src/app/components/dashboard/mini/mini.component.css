@@ -1,0 +1,36 @@
+/* Example styling */
+.mat-calendar .mat-calendar-body-cell {
+    position: relative;
+  }
+  
+  .mat-calendar .task-day {
+    background-color: yellow; /* Highlight color */
+    border-radius: 50%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .task-list {
+    margin-top: 10px;
+  }
+  
+  .task-list li {
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .task-list li:hover {
+    background-color: #f0f0f0;
+  }
+
+
+.has-task .mat-calendar-body-cell-content {
+    background-color: red; /* Change the color to indicate tasks */
+    color: white; /* Optional: change text color for better visibility */
+    border-radius: 50%; /* Make it a circle if desired */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

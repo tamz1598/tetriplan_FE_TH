@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MiniCalendarComponent } from './mini-calendar.component';
+import { MiniComponent } from './mini.component';
 
-describe('MiniCalendarComponent', () => {
-  let component: MiniCalendarComponent;
-  let fixture: ComponentFixture<MiniCalendarComponent>;
+describe('MiniComponent', () => {
+  let component: MiniComponent;
+  let fixture: ComponentFixture<MiniComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MiniCalendarComponent]
+      declarations: [MiniComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MiniCalendarComponent);
+    fixture = TestBed.createComponent(MiniComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
