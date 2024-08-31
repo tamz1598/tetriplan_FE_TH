@@ -6,6 +6,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { AIRecommendTasksComponent } from './airecommend-tasks/airecommend-tasks.component';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +36,14 @@ export class DashboardComponent implements OnInit{
         console.log('Current user email:', currentUserEmail);
         
         if (currentUserEmail) {
-          this.apiService.getUserByEmail(currentUserEmail).subscribe(
+          this.apiService.getUserByEmail(currentUserEmail).pipe(
+            retry(3), // Retry the request up to 3 times
+            catchError(error => {
+              console.error('Error fetching user details from backend:', error);
+              this.userLoaded = true; // Indicate user load attempt even on failure
+              return of(null); // Return an empty observable to handle the error gracefully
+            })
+          ).subscribe(
             response => {
               console.log('Response from API, the user:', response);
 
@@ -52,17 +61,16 @@ export class DashboardComponent implements OnInit{
                 } else {
                   console.error('User not found in backend for email:', currentUserEmail);
                   this.userLoaded = true;
+                  this.router.navigate(['/login']);
                 }
               } else {
-                console.error('Unexpected response format:', response);
+                console.error('Unexpected response format or empty response:', response);
                 this.userLoaded = true;
               }
-            },
-            error => {
-              console.error('Error fetching user details from backend:', error);
-              this.userLoaded = true;
-            }
-          );
+            });
+        } else {
+          console.error('No email found for the current user, redirecting to login.');
+          this.router.navigate(['/login']);
         }
       } else {
         console.log('No authenticated user found. Redirecting to login page.');

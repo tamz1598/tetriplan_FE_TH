@@ -1,5 +1,5 @@
 <p>mini works!</p>
-<mat-calendar [dateClass]="dateClass()" (selectedChange)="onDateChange($event)">
+<mat-calendar (selectedChange)="onDateChange($event)">
 </mat-calendar>
     
     <!-- Display tasks for the selected date -->
@@ -7,7 +7,7 @@
       <h3>Tasks for {{ selectedDate | date: 'longDate' }}</h3>
       <ul class="task-list">
         <li *ngFor="let task of selectedTasks" (click)="onTaskClick(task)">
-          {{ task.name }} <!-- Adjust this to match the actual task property you want to display -->
+          {{ task.taskName }} <!-- Adjust this to match the actual task property you want to display -->
         </li>
       </ul>
     </div>

@@ -3,22 +3,15 @@
     position: relative;
   }
   
-  .mat-calendar .task-day {
-    background-color: yellow; /* Highlight color */
-    border-radius: 50%;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
   .task-list {
     margin-top: 10px;
+    color: black;
   }
   
   .task-list li {
     cursor: pointer;
     padding: 5px;
+    color: black;
   }
   
   .task-list li:hover {
@@ -26,11 +19,6 @@
   }
 
 
-.has-task .mat-calendar-body-cell-content {
-    background-color: red; /* Change the color to indicate tasks */
-    color: white; /* Optional: change text color for better visibility */
-    border-radius: 50%; /* Make it a circle if desired */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
+
+
