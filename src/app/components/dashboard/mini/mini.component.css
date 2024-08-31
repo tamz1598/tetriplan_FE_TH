@@ -2,6 +2,20 @@
 .mat-calendar .mat-calendar-body-cell {
     position: relative;
   }
+
+  .mini-calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mat-calendar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 10%;
+  }
   
   .task-list {
     margin-top: 10px;
@@ -16,6 +30,22 @@
   
   .task-list li:hover {
     background-color: #f0f0f0;
+  }
+
+  ::ng-deep .mat-calendar-body-today {
+    border-color: #6ddea8 !important;
+    border-width: medium !important;
+  }
+
+  ::ng-deep .mat-calendar-previous-button {
+    background-color: #6ddea8 !important;
+    color: #ffffff !important;
+  }
+
+  ::ng-deep .mat-calendar-next-button {
+    background-color: #6ddea8 !important;
+    color: #ffffff !important;
+    margin: 5px;
   }
 
 

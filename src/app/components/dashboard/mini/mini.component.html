@@ -1,6 +1,7 @@
-<p>mini works!</p>
+<div class="mini-calendar-container">
 <mat-calendar (selectedChange)="onDateChange($event)">
 </mat-calendar>
+</div>
     
     <!-- Display tasks for the selected date -->
     <div *ngIf="selectedDate">
