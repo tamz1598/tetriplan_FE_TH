@@ -32,7 +32,7 @@
         {{ taskMessage }}
       </div>
       <div class="add-task">
-        <p><img class='addButton'src="assets/addTask.png" (click)="openAddTaskModal()" alt="Add Task"/></p><p> Add A Task </p>
+        <p class='addButton' (click)="openAddTaskModal()" alt="Add Task">Add A Task </p>
       </div>
       <div class="task-list">
         <app-task-list [loggedInUserName]="loggedInUserName">

@@ -112,8 +112,10 @@ body, .mat-typography {
     font-family: Virgil;
     src: url(../src/assets/fonts/Virgil.ttf);
 }
-* {
-  /* font-family: 'Virgil', sans-serif !important; */
+
+@font-face {
+  font-family: Baphnom;
+  src: url(../src/assets/fonts/khbaphnom.ttf);
 }
 
 /* Override Angular Material default typography */

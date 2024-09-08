@@ -1,20 +1,63 @@
 ul li {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
     justify-content: center;
     align-items: center;
-    background-color: #f9f0ad;
-    border: 1px solid #d1d59c;
-    border-radius: 5px;
-    padding: 5px;
+    font-size: 1em !important;
+    background-color: #43c8ab;
+    border-radius: 10%;
+    border-bottom-left-radius: 2%;
+    border-top-right-radius: 2%;
+    padding: 10px;
     margin: 5px;
     cursor: pointer;
-    box-shadow: -5px 8px #e2e2e2;
-    font-family: Virgil;
+    font-family: Baphnom;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+    gap: 8px;
+    width: 250px;
+    height: 220px;
+}
+
+h4 {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.grid-task {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-column: 1;
+    grid-row: 2;
+    gap: 5px;
+}
+
+.grid-task-2 {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    grid-row: 3;
+    justify-content: center;
+    align-items: center;
+}
+
+.minutes {
+    display: flex;
+    grid-column: 1;
+}
+
+.category {
+    display: flex;
+    grid-column: 2;
 }
 
 ul li:hover {
-    background-color: #f8eb8c;
+    background-color: #63d5bd;
 }
 
 ul {
@@ -26,26 +69,42 @@ ul {
     list-style: none;
 }
 
+.virgil {
+    font-family: virgil !important;
+}
+
 .edit-button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: #3ab399;
-    border: 1px solid #2e907b;
-    color: aliceblue;
+    background-color: #a6eb9a;
+    border: 1px solid #91d585;
+    color: #272d29;
+    padding: 8px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: 2px;
+    border-radius: 8%;
+    cursor: pointer;
 }
 
 .delete-button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: #dc5151;
-    border: 1px solid #931c1c;
-    color: aliceblue;
+    background-color: #20a98b;
+    border: 1px solid #fffdfc;
+    color: #ffffff;
+    padding: 8px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    margin: 2px;
+    border-radius: 8%;
+    cursor: pointer;
 }
 
 .edit-button:hover {
-    background-color: #4ec9ae;  
+    background-color: #4ec9ae; 
+    color: white; 
 }
 
 .delete-button:hover {
-    background-color: #e96868;  
+    background-color: #edb6dc; 
+    color: white; 
 }
 
 .highlight-task {
@@ -81,7 +140,11 @@ button {
 .bottom-buttons {
     display: flex;
     flex-direction: row;
-    padding: 8px;
+    grid-column: 1;
+    grid-row: 4;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
 }
 
 p {

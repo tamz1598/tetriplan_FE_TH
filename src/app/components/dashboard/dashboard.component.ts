@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit{
                 if (user) {
                   this.loggedInUserName = `${user.username}`;
                   this.welcomeMessage = `Hello ${this.loggedInUserName}`
-                  this.taskMessage = `task for ${this.loggedInUserName}`
+                  this.taskMessage = `Tasks for ${this.loggedInUserName}`
                   console.log('User found:', user);
                   console.log('User full name:', user.fullName);
                   this.userLoaded = true; 

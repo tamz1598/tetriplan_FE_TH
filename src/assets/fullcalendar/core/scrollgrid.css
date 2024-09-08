@@ -20,6 +20,7 @@
   border-collapse: separate;
   border-right-width: 0;
   border-bottom-width: 0;
+  background-color: white !important;
 }
 
 /* Styles for liquid scrolling */

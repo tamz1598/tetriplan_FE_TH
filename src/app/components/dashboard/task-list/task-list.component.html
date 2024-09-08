@@ -4,9 +4,14 @@
     <li *ngFor="let task of tasks" [ngClass]="{'highlight-task': task._id === currentEditingTaskId,  'completed-task': task.completionStatus, 'incomplete-task': !task.completionStatus}" (click)="viewTaskDetails(task)" draggable="true"
     (dragstart)="onDragStart($event, task)">
       <h4>{{ task.taskName }}</h4>
-      <p>{{ task.duration }} minutes</p>
-      <p>{{ task.category }}</p>
-      <p><strong>Completion Status:</strong> {{ task.completionStatus ? 'Completed' : 'Incomplete' }}</p>
+      <div class="grid-task">
+        <p class="minutes">{{ task.duration }} minutes</p>
+        <p class="category">{{ task.category }}</p>
+      </div>
+      <div class="grid-task-2">
+        <p><strong>Completion Status:</strong></p>
+        <p class="virgil">{{ task.completionStatus ? 'Completed' : 'Incomplete' }}</p>
+      </div>
       
       <!-- Button to open the modal -->
       <div class="bottom-buttons">

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, AfterViewInit, Renderer2, ElementRef} from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild} from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
+import { MatCalendar } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-mini',
@@ -14,6 +15,8 @@ export class MiniComponent implements OnInit, AfterViewInit {
   taskDates: Set<string> = new Set(); //store the task dates to highlight for users
   selectedTasks: any[] = [];
   selectedDate: Date | null = null;
+
+  @ViewChild(MatCalendar) calendar!: MatCalendar<Date>; 
 
   constructor(private apiService: ApiService, private dialog: MatDialog, private renderer: Renderer2,
     private el: ElementRef) {}
@@ -28,6 +31,14 @@ export class MiniComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // Highlight task dates once the view has been initialized
     this.highlightTaskDates();
+    // Listen to view changes (e.g., when changing months)
+    // stateChange is subscribed to calendar
+    // ensures highlightTaskDates is all called with every month change
+    this.calendar.stateChanges.subscribe(() => {
+      setTimeout(() => {
+        this.highlightTaskDates();
+      }, 0); // Delay to ensure the new month is fully rendered
+    });
   }
 
 
@@ -48,6 +59,7 @@ export class MiniComponent implements OnInit, AfterViewInit {
   }
 
   private extractTaskDates() {
+    this.taskDates.clear(); 
     this.tasks.forEach(task => {
       console.log("task.calendar",task.calendar)
       const date = task.calendar;
@@ -67,10 +79,14 @@ export class MiniComponent implements OnInit, AfterViewInit {
         console.log("taskDate, selectedDateString", taskDate, selectedDateString)
         return taskDate === selectedDateString;
       });
-      console.log('Selected date:', date);
-      console.log('Tasks for selected date:', this.selectedTasks);
+      if (this.selectedTasks.length > 0) {
+        // Open the task details dialog directly for the first task
+        this.onTaskClick(this.selectedTasks[0]);
+      } else {
+        this.selectedTasks = [];
+        console.log('No tasks for selected date:', date);
+      }
     } else {
-      this.selectedTasks = [];
       console.log('No date selected.');
     }
   }

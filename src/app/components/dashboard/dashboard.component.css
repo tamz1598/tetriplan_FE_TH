@@ -9,7 +9,8 @@
   padding: 20px;
   height: 100vh;
   box-sizing: border-box;
-  background-color: #e1fff9;
+  background-image: url(../../../assets/background2.png);
+ 
 }
 
 .user-main {
@@ -89,7 +90,6 @@
   text-decoration: none;
   color: #141414;
   /* padding-bottom: 0px !important; */
-  border-bottom: 4px solid rgb(223, 164, 62);
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -97,24 +97,27 @@
 .welcome-message {
   display: flex;
   justify-content: center;
+  font-family: Baphnom;
   font-size: 24px;
   margin-bottom: 20px;
   grid-column: 1;
   grid-row: 1;
   max-height: 50px;
   padding: 2px;
-  border: 4px solid #269c82;
-  border-radius: 25px;
-  background-color: #51c2a9;
+  border-radius: 10px;
+  background-color:#43c8ab;
+  color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .task-message {
+  font-family: virgil;
+  color: #137862;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
   font-size: 30px;
-  margin-bottom: 20px;
   grid-column: 2;
   grid-row: 1;
   padding-top: 5px;
@@ -127,10 +130,10 @@
   grid-column: 3;
   grid-row: 1;
   cursor: pointer;
-  border: 4px solid #f6f6f6;
-  border-style: outset;
-  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   width: 200px;
+  background-color: white;
+  border-radius: 15px;
 }
 
 .add-task:hover {
@@ -147,16 +150,15 @@
   align-items: center;
   margin: 5px;
   color: #3ab399;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.5em;
+  font-family: Baphnom;
 }
 
 .addButton {
-  background-color: #95e9d8;
   padding: 10px;
   border-radius: 25px;
   width: auto;
   height: 30px;
-
 }
 
 .mini-calendar,
@@ -201,19 +203,21 @@ h2 {
 }
 
 .recommended-tasks button {
-  border: 4px solid #269c82 !important;
-  border-radius: 25px !important;
-  background-color: #86ddca !important;
+  font-family: Baphnom;
+  border: 4px solid #43c8ab !important;
+  border-radius: 15px !important;
+  background-color: #43c8ab !important;
   cursor: pointer;
-  width: 150px;
+  width: 280px;
   align-items: center;
-  margin-left: 23%;
+  margin-left: 0%;
   margin-bottom: 15%;
   padding: 10px;
-  color:azure;
-  box-shadow: 0px 8px #73bcac;
+  color:#ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .recommended-tasks button:hover {
-  background-color: #5ad8bd !important;
+  background-color: #58cdb4 !important;
+  color: white;
 }
