@@ -17,7 +17,7 @@ export class AddTaskComponent {
     endTime: '',
     duration: 0,
     label: '',
-    priority: '',
+    priority: 'low',
     calendar:'',
     completionStatus: false,
     __v: 0,
